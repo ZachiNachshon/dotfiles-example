@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Bash wrappers for docker run commands
+
+export DOCKER_REPO_PREFIX=zachi
+
+centos() {
+  docker run -t -d \
+         --name=empty-centOS \
+         ${DOCKER_REPO_PREFIX}/centos "$@"
+}
+
+alpine() {
+  docker run -t -d \
+         --name=empty-alpine \
+         ${DOCKER_REPO_PREFIX}/alpine "$@"
+}
+
+jenkins() {
+  docker run -t -d \
+         -v "${HOME}/.jenkins:/var/jenkins_home" \
+         -p 49001:8080/tcp \
+         --restart always \
+         --name=jenkins \
+         ${DOCKER_REPO_PREFIX}/jenkins "$@"
+}
+
+zookeeper() {
+  docker run -t -d \
+         -v "${HOME}/.zookeeper/data:/opt/zookeeper-3.4.13/data" \
+         --network=zk-kafka \
+         --hostname=zookeeper \
+         -p 2181:2181/tcp \
+         --restart always \
+         --name=zookeeper \
+         ${DOCKER_REPO_PREFIX}/zookeeper "$@"
+}
+
+kafka() {
+  docker run -t -d \
+         -v "${HOME}/.kafka/kafka-logs-kafka:/kafka/kafka-logs-kafka" \
+         -v "${HOME}/.kafka/logs:/opt/kafka/logs" \
+         --network=zk-kafka \
+         --hostname=kafka \
+         -p 9092:9092/tcp \
+         --name=kafka \
+         ${DOCKER_REPO_PREFIX}/kafka "$@"
+}
+
+artifactory() {
+  docker run -t -d \
+         -v "${HOME}/.artifactory:/var/opt/jfrog/artifactory" \
+         -p 2000:8081/tcp \
+         --restart always \
+         --ulimit nofile=32000:40000 \
+         --ulimit nproc=65535 \
+         --name=artifactory \
+         ${DOCKER_REPO_PREFIX}/artifactory "$@"
+}
+
+cim() {
+  docker rmi -f $(docker images | grep "<none>" | awk {'print $3'})
+}

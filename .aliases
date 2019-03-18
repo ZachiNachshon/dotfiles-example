@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Shortcuts
+alias code="cd ~/Codebase"
+alias spot="cd ~/Codebase/spotinst"
+alias dl="cd ~/Downloads"
+alias gop="cd ~/Codebase/go-path/src/github.com"
+alias dc="docker-compose"
+alias visual="/usr/bin/jvisualvm &"
+
+# launchctl is MAC equivalent to systemctl
+#alias service="launchctl"
+
+# ZSH
+alias zshconfig="vim ~/.zshrc"
