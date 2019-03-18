@@ -19,4 +19,6 @@ dotfiles: ## Installs the dotfiles.
 	done; \
 #	ln -fn $(PWD)/gitignore $(HOME)/.gitignore;
 #	git update-index --skip-worktree $(CURDIR)/.gitconfig;
-	ln -snf $(PWD)/.fonts $(HOME)/Library/Fonts;
+
+# Need to check before usage
+#	ln -snf $(PWD)/.fonts $(HOME)/Library/Fonts;
