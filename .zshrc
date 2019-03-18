@@ -12,10 +12,6 @@ for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,fzf.zsh}; do
 	fi
 done
 
-# Terraform auto-complete
-complete -C /Users/zachi.nachshon/Environment/terraform/t11.4 t11.4
-complete -C /Users/zachi.nachshon/Environment/terraform/t10.7 t10.7
-
 unset file
 ###########################################################################
 

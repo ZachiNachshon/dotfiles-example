@@ -13,7 +13,7 @@
 dotfiles: ## Installs the dotfiles.
 	# add aliases for dotfiles
 	# basename concat only the filename, .path from /Users/zachi.nachshon/code/dotfiles/.path
-	for file in $(find $(PWD) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg"); do \
+	for file in $(shell find $(PWD) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
