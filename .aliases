@@ -7,6 +7,7 @@ alias dl="cd ~/Downloads"
 alias gop="cd ~/Codebase/go-path/src/github.com"
 alias dc="docker-compose"
 alias visual="/usr/bin/jvisualvm &"
+alias github="cd ~/CodeBase/github"
 
 # launchctl is MAC equivalent to systemctl
 #alias service="launchctl"
