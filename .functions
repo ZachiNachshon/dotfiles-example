@@ -1,5 +1,42 @@
 #!/bin/bash
 
+service() {
+  cur=${pwd}
+  cd ${DOCKER_FILES}
+
+  case "$1" in
+          list)
+              make list
+              ;;
+
+          run)
+              make run DIR=$2
+              ;;
+
+          build)
+              make build DIR=$2
+              ;;
+
+          push)
+              make push DIR=$2
+              ;;
+
+          clean)
+              make clean DIR=$2
+              ;;
+
+          help)
+              make help
+              ;;
+
+          *)
+              echo $"Usage: $0 {run|build|push|clean|help}"
+              ;;
+  esac
+
+  cd ${cur}
+}
+
 # Create a new directory and enter it
 mkd() {
 	mkdir -p "$@"

@@ -4,7 +4,7 @@
 #                           FROM .bash_profile
 ###########################################################################
 # Load .bashrc and other files...
-for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,extra,fzf.zsh}; do
+for file in ~/.{bashrc,path,aliases,functions,dockerfunc,exports,extra,fzf.zsh}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"
@@ -120,4 +120,4 @@ complete -o nospace -C /Users/zachi.nachshon/Environment/terraform-binaries/t11.
 
 complete -C /Users/zachi.nachshon/Environment/terraform-binaries/t10.7 t10.7
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh

@@ -5,6 +5,7 @@ export ENVIRONMENT=${HOME}/environment
 export UTILITIES=${HOME}/utilities
 
 export DOT_FILES=${CODEBASE}/github/dotfiles
+export DOCKER_FILES=${CODEBASE}/github/dockerfiles
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -21,11 +22,11 @@ export GOROOT=${ENVIRONMENT}/go-root
 export GOPATH=${HOME}/.go
 
 # Terraform
-export TERRAFORM_BINARY=${ENVIRONMENT}/terraform-binaries
+export TERRAFORM_BINARY=${HOME}/.terraform
 export TF_LOG=DEBUG
 
 # K8s
-export K8S=${ENVIRONMENT}/k8s
+export K8S=${HOME}/.k8s
 
 # Secrets
 export SECRETS=${HOME}/.secrets
