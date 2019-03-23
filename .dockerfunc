@@ -6,13 +6,13 @@ export DOCKER_REPO_PREFIX=zachi
 
 centos() {
   docker run -t -d \
-         --name=empty-centOS \
+         --name=${DOCKER_REPO_PREFIX}-centos \
          ${DOCKER_REPO_PREFIX}/centos "$@"
 }
 
 alpine() {
   docker run -t -d \
-         --name=empty-alpine \
+         --name=${DOCKER_REPO_PREFIX}-alpine \
          ${DOCKER_REPO_PREFIX}/alpine "$@"
 }
 
@@ -21,7 +21,7 @@ jenkins() {
          -v "${HOME}/.jenkins:/var/jenkins_home" \
          -p 49001:8080/tcp \
          --restart always \
-         --name=jenkins \
+         --name=${DOCKER_REPO_PREFIX}-jenkins \
          ${DOCKER_REPO_PREFIX}/jenkins "$@"
 }
 
@@ -32,7 +32,7 @@ zookeeper() {
          --hostname=zookeeper \
          -p 2181:2181/tcp \
          --restart always \
-         --name=zookeeper \
+         --name=${DOCKER_REPO_PREFIX}-zookeeper \
          ${DOCKER_REPO_PREFIX}/zookeeper "$@"
 }
 
@@ -43,7 +43,7 @@ kafka() {
          --network=zk-kafka \
          --hostname=kafka \
          -p 9092:9092/tcp \
-         --name=kafka \
+         --name=${DOCKER_REPO_PREFIX}-kafka \
          ${DOCKER_REPO_PREFIX}/kafka "$@"
 }
 
@@ -54,10 +54,6 @@ artifactory() {
          --restart always \
          --ulimit nofile=32000:40000 \
          --ulimit nproc=65535 \
-         --name=artifactory \
+         --name=${DOCKER_REPO_PREFIX}-artifactory \
          ${DOCKER_REPO_PREFIX}/artifactory "$@"
-}
-
-cim() {
-  docker rmi -f $(docker images | grep "<none>" | awk {'print $3'})
 }

@@ -4,8 +4,7 @@
 #                           FROM .bash_profile
 ###########################################################################
 # Load .bashrc and other files...
-#for file in ~/.{bashrc,aliases,functions,path,dockerfunc,extra,exports}; do
-for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,fzf.zsh}; do
+for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,extra,fzf.zsh}; do
 	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
 		# shellcheck source=/dev/null
 		source "$file"

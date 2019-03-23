@@ -1,26 +1,34 @@
 #!/bin/bash
 
+export CODEBASE=${HOME}/codebase
+export ENVIRONMENT=${HOME}/environment
+export UTILITIES=${HOME}/utilities
+
+export DOT_FILES=${CODEBASE}/github/dotfiles
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Build
-export MAVEN_HOME=/Users/zachi.nachshon/Environment/apache-maven-3.5.2
-export GRADLE_HOME=/Users/zachi.nachshon/Environment/gradle-4.10.3
+export MAVEN_HOME=${ENVIRONMENT}/apache-maven-3.5.2
+export GRADLE_HOME=${ENVIRONMENT}/gradle-4.10.3
 
 # Java
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 
 # Go
-export GOROOT=/Users/zachi.nachshon/Environment/go-root
-export GOPATH=/Users/zachi.nachshon/CodeBase/go-path
-#export GOPATH="${HOME}/.go"
+export GOROOT=${ENVIRONMENT}/go-root
+export GOPATH=${HOME}/.go
 
 # Terraform
-export TERRAFORM_BINARY=/Users/zachi.nachshon/Environment/terraform-binaries
+export TERRAFORM_BINARY=${ENVIRONMENT}/terraform-binaries
 export TF_LOG=DEBUG
 
 # K8s
-export K8S=/Users/zachi.nachshon/Environment/k8s
+export K8S=${ENVIRONMENT}/k8s
+
+# Secrets
+export SECRETS=${HOME}/.secrets
 
 # Path
-export PATH=$PATH:$GRADLE_HOME/bin:JAVA_HOME/bin:$MAVEN_HOME/bin:$TERRAFORM_BINARY:$GOROOT/bin:$GOPATH/bin:$K8S
+export PATH=$PATH:${GRADLE_HOME}/bin:JAVA_HOME/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}
