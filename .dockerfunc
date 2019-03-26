@@ -4,6 +4,13 @@
 
 export DOCKER_REPO_PREFIX=zachi
 
+automation() {
+  docker run -t -d \
+         -v "${ENVIRONMENT}/automation-gradle-cache:/home/jenkins/.gradle" \
+         --name=${DOCKER_REPO_PREFIX}-automation \
+         ${DOCKER_REPO_PREFIX}/automation "$@"
+}
+
 centos() {
   docker run -t -d \
          --name=${DOCKER_REPO_PREFIX}-centos \
