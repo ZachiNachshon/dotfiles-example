@@ -4,9 +4,15 @@
 
 export DOCKER_REPO_PREFIX=zachi
 
+# Mount shared memory to the host machine on Linux based instances
+#         -v /dev/shm:/dev/shm \
+#
+# Check shared memory on instance: df -k | grep shm
+#
 automation() {
-  docker run -t -d \
+  docker run --privileged -t -d --shm-size 8G \
          -v "${ENVIRONMENT}/automation-gradle-cache:/home/jenkins/.gradle" \
+         -v "${ENVIRONMENT}/automation-reports":"/home/jenkins/automation/reports" \
          --name=${DOCKER_REPO_PREFIX}-automation \
          ${DOCKER_REPO_PREFIX}/automation "$@"
 }
