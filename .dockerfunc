@@ -11,7 +11,7 @@ export DOCKER_REPO_PREFIX=zachi
 #
 automation() {
   docker run --privileged -t -d --shm-size 8G \
-         -e EXEC_CMD="runInParallel -PthreadCount=1 -PconfigFile=./src/dist/config/stg.yml -PfeaturesPath=src/test/resources/features -PfeatureTags=@LogoutFromConsole" \
+         -e EXEC_CMD="runInParallel -PparallelCount=5 -PconfigFile=./src/dist/config/stg.yml -PfeaturesPath=src/test/resources/features -PfeatureTags=@Staging" \
          -e REPORTS_ROOT_FOLDER="/home/jenkins/automation/reports" \
          -v "${ENVIRONMENT}/automation-reports":"/home/jenkins/automation/reports" \
          -v "${ENVIRONMENT}/automation-gradle-cache:/home/jenkins/.gradle" \
