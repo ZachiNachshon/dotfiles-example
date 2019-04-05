@@ -6,6 +6,11 @@
 export DOCKER_REPO_PREFIX=zachi
 export DOCKER_REGISTRY=r.znkit.co
 
+###
+### Generic Credentials
+###
+export GENERIC_USERNAME=zachi
+export GENERIC_PASSWORD=admin
 
 ###
 ### Git credentials

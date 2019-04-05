@@ -1,7 +1,7 @@
 #!/bin/bash
 
 service() {
-  cur=${pwd}
+  cur=$(pwd)
   cd ${DOCKER_FILES}
 
   case "$1" in
@@ -9,7 +9,7 @@ service() {
               make list
               ;;
 
-          run)
+          start)
               make run DIR=$2
               ;;
 
@@ -21,6 +21,10 @@ service() {
               make push DIR=$2
               ;;
 
+          stop)
+              make stop DIR=$2
+              ;;
+
           clean)
               make clean DIR=$2
               ;;
@@ -30,7 +34,7 @@ service() {
               ;;
 
           *)
-              echo $"Usage: $0 {run|build|push|clean|help}"
+              echo $"Usage: $0 {build|push|clean|start|stop|list|help}"
               ;;
   esac
 

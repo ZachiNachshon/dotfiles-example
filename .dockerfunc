@@ -1,8 +1,33 @@
 #!/bin/bash
 
 # Bash wrappers for docker run commands
+# Functions must contain the same directory name as on dockerfiles repository
 
 export DOCKER_REPO_PREFIX=zachi
+
+grafana() {
+  docker run -t -d \
+         -e GF_SECURITY_ADMIN_PASSWORD=${GENERIC_PASSWORD} \
+         -v "${HOME}/.grafana/data:/var/lib/grafana" \
+         -p 3000:3000 \
+         --name=${DOCKER_REPO_PREFIX}-grafana \
+         ${DOCKER_REPO_PREFIX}/grafana \
+         "$@"
+}
+
+# On mac the user UID/GID must be same one that mounted the data folder
+# From mac terminal get the UID by typing `id`
+postgresql() {
+  docker run -t -d \
+         -e POSTGRES_USER=${GENERIC_USERNAME} \
+         -e POSTGRES_PASSWORD=${GENERIC_PASSWORD} \
+         -v "${HOME}/.postgresql/data:/var/lib/postgresql/data" \
+         -p 5432:5432 \
+         --name=${DOCKER_REPO_PREFIX}-postgresql \
+         --user "$(id -u):$(id -g)" \
+         ${DOCKER_REPO_PREFIX}/postgresql "$@" \
+         -c "postgresql.conf=/etc/postgresql/postgresql.conf"
+}
 
 # Mount shared memory to the host machine on Linux based instances
 #         -v /dev/shm:/dev/shm \
