@@ -17,6 +17,28 @@ grafana() {
 
 # On mac the user UID/GID must be same one that mounted the data folder
 # From mac terminal get the UID by typing `id`
+# Reminder:
+#   - docker network create mysql-network
+#
+mysql() {
+  docker run -t -d \
+         -e MYSQL_ROOT_PASSWORD=${GENERIC_PASSWORD} \
+         -e MYSQL_USER=${GENERIC_USERNAME} \
+         -e MYSQL_PASSWORD=${GENERIC_PASSWORD} \
+         -v "${HOME}/.mysql/data:/var/lib/mysql" \
+         -v "${HOME}/.mysql/config:/etc/mysql/conf.d" \
+         --network=mysql-network \
+         --hostname=mysql \
+         -p ${MYSQL_PORT}:3306 \
+         --name=${DOCKER_REPO_PREFIX}-mysql \
+         --user "$(id -u):$(id -g)" \
+         ${DOCKER_REPO_PREFIX}/mysql "$@"
+}
+
+# On mac the user UID/GID must be same one that mounted the data folder
+# From mac terminal get the UID by typing `id`
+# Reminder:
+#   - docker network create postgres-network
 #
 postgresql() {
   docker run -t -d \
