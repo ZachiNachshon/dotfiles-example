@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#
+# Monitoring
+#
+export GRAFANA_PORT=3000
+
+#
+# Postgres
+#
+export POSTGRES_PORT=5432
+export PGWATCH2_ADMIN_PORT=3100
+export PGWATCH2_GRAFANA_PORT=3200

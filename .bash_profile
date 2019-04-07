@@ -5,7 +5,7 @@
 #
 
 # Load .bashrc and other files...
-#for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,fzf.zsh}; do
+#for file in ~/.{bashrc,aliases,functions,path,dockerfunc,exports,fzf.zsh,ports}; do
 #
 #  # [ -f FILE ]	True if FILE exists and is a regular file.
 #  # [ -r FILE ]	True if FILE exists and is readable.

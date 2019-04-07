@@ -17,16 +17,42 @@ grafana() {
 
 # On mac the user UID/GID must be same one that mounted the data folder
 # From mac terminal get the UID by typing `id`
+#
 postgresql() {
   docker run -t -d \
          -e POSTGRES_USER=${GENERIC_USERNAME} \
          -e POSTGRES_PASSWORD=${GENERIC_PASSWORD} \
          -v "${HOME}/.postgresql/data:/var/lib/postgresql/data" \
-         -p 5432:5432 \
+         --network=postgres-network \
+         --hostname=postgresql \
+         -p ${POSTGRES_PORT}:5432 \
          --name=${DOCKER_REPO_PREFIX}-postgresql \
          --user "$(id -u):$(id -g)" \
          ${DOCKER_REPO_PREFIX}/postgresql "$@" \
          -c "postgresql.conf=/etc/postgresql/postgresql.conf"
+}
+
+# To allow docker-to-docker communication we must:
+#   - Create a network: docker network create postgres-network
+#   - Check the network docker members: docker network inspect postgres-network
+#   - Communicate via the full docker name (not host localhost)
+#
+
+#-e PW2_ADHOC_CONN_STR="postgresql://${GENERIC_USERNAME}:${GENERIC_PASSWORD}@${DOCKER_REPO_PREFIX}-postgresql:5432" \
+
+pgwatch2() {
+  docker run -t -d \
+         -e PW2_ADHOC_CONN_STR="postgresql://pgwatch2:secret@${DOCKER_REPO_PREFIX}-postgresql:5432" \
+         -e PW2_ADHOC_CONFIG=exhaustive \
+         -e PW2_ADHOC_CREATE_HELPERS=true \
+         -v "${HOME}/.pgwatch2/influx:/var/lib/influxdb" \
+         -v "${HOME}/.pgwatch2/grafana:/var/lib/grafana" \
+         -v "${HOME}/.pgwatch2/pw2:/pgwatch2/persistent-config" \
+         -p ${PGWATCH2_GRAFANA_PORT}:3000 \
+         -p ${PGWATCH2_ADMIN_PORT}:8080 \
+         --network=postgres-network \
+         --name=${DOCKER_REPO_PREFIX}-pgwatch2 \
+         ${DOCKER_REPO_PREFIX}/pgwatch2 "$@"
 }
 
 # Mount shared memory to the host machine on Linux based instances
@@ -65,6 +91,7 @@ jenkins() {
          ${DOCKER_REPO_PREFIX}/jenkins "$@"
 }
 
+# docker network create zk-kafka
 zookeeper() {
   docker run -t -d \
          -v "${HOME}/.zookeeper/data:/opt/zookeeper-3.4.13/data" \
