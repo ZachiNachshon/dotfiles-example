@@ -15,6 +15,29 @@ grafana() {
          "$@"
 }
 
+# To allow backup of the percona mysql database we need to align the UID and GID of the host user
+# -v "${HOME}/.percona/server/mysql:/var/lib/mysql" \
+percona-server() {
+  docker run -t -d \
+         -e SERVER_USER=${GENERIC_MONITOR_USER} \
+         -e SERVER_PASSWORD=${GENERIC_MONITOR_PASS} \
+         -e DISABLE_UPDATES=true \
+         -v "${HOME}/.percona/server/prometheus:/opt/prometheus/data" \
+         -v "${HOME}/.percona/server/consul-data:/opt/consul-data" \
+         -v "${HOME}/.percona/server/grafana:/var/lib/grafana" \
+         --network=percona-network \
+         --restart always \
+         -p ${PERCONA_SERVER_PORT}:${PERCONA_SERVER_PORT} \
+         -p ${PERCONA_GENERAL_PORT}:${PERCONA_GENERAL_PORT} \
+         -p ${PERCONA_QAN_PORT}:${PERCONA_QAN_PORT} \
+         -p ${PERCONA_MYSQL_PORT}:${PERCONA_MYSQL_PORT} \
+         -p ${PERCONA_MONGODB_PORT}:${PERCONA_MONGODB_PORT} \
+         -p ${PERCONA_PROXYSQL_PORT}:${PERCONA_PROXYSQL_PORT} \
+         -p ${PERCONA_POSTGRES_PORT}:${PERCONA_POSTGRES_PORT} \
+         --name=${DOCKER_REPO_PREFIX}-percona-server \
+         ${DOCKER_REPO_PREFIX}/percona-server "$@"
+}
+
 # On mac the user UID/GID must be same one that mounted the data folder
 # From mac terminal get the UID by typing `id`
 # Reminder:
@@ -29,44 +52,19 @@ mysql() {
          -e MONITOR_PASS=${GENERIC_MONITOR_PASS} \
          -v "${HOME}/.mysql/data:/var/lib/mysql" \
          -v "${HOME}/.mysql/config:/etc/mysql/conf.d" \
-         --network=mysql-network \
+         --network=percona-network \
          -p ${MYSQL_PORT}:3306 \
          --name=${DOCKER_REPO_PREFIX}-mysql \
          --user "$(id -u):$(id -g)" \
          ${DOCKER_REPO_PREFIX}/mysql "$@"
 }
 
-# To allow backup of the percona mysql database we need to align the UID and GID of the host user
-# -v "${HOME}/.percona/server/mysql:/var/lib/mysql" \
-mysql-percona-server() {
-  docker run -t -d \
-         -e SERVER_USER=${GENERIC_MONITOR_USER} \
-         -e SERVER_PASSWORD=${GENERIC_MONITOR_PASS} \
-         -e DISABLE_UPDATES=true \
-         -v "${HOME}/.percona/server/prometheus:/opt/prometheus/data" \
-         -v "${HOME}/.percona/server/consul-data:/opt/consul-data" \
-         -v "${HOME}/.percona/server/grafana:/var/lib/grafana" \
-         --network=mysql-network \
-         --restart always \
-         -p ${MYSQL_PERCONA_SERVER_PORT}:${MYSQL_PERCONA_SERVER_PORT} \
-         -p ${MYSQL_PERCONA_GENERAL_PORT}:${MYSQL_PERCONA_GENERAL_PORT} \
-         -p ${MYSQL_PERCONA_QAN_PORT}:${MYSQL_PERCONA_QAN_PORT} \
-         -p ${MYSQL_PERCONA_MYSQL_PORT}:${MYSQL_PERCONA_MYSQL_PORT} \
-         -p ${MYSQL_PERCONA_MONGODB_PORT}:${MYSQL_PERCONA_MONGODB_PORT} \
-         -p ${MYSQL_PERCONA_PROXYSQL_PORT}:${MYSQL_PERCONA_PROXYSQL_PORT} \
-         -p ${MYSQL_PERCONA_POSTGRES_PORT}:${MYSQL_PERCONA_POSTGRES_PORT} \
-         --name=${DOCKER_REPO_PREFIX}-mysql-percona-server \
-         ${DOCKER_REPO_PREFIX}/mysql-percona-server "$@"
-}
-
 # PMM_SERVER is using :80 port by default, it can be changed to :443 is needed
 # Make sure to change the server port on mysql-percona-server
-# To monitor postgres we need to change:
-#   -e DB_TYPE="postgres:metrics" \
 #
 mysql-percona-client() {
   docker run -t -d \
-         -e PMM_SERVER="${DOCKER_REPO_PREFIX}-mysql-percona-server" \
+         -e PMM_SERVER="${DOCKER_REPO_PREFIX}-percona-server" \
          -e PMM_USER=${GENERIC_MONITOR_USER} \
          -e PMM_PASSWORD=${GENERIC_MONITOR_PASS} \
          -e DB_HOST="${DOCKER_REPO_PREFIX}-mysql" \
@@ -74,7 +72,7 @@ mysql-percona-client() {
          -e DB_PASSWORD=${GENERIC_MONITOR_PASS} \
          -e CLIENT_NAME=${DOCKER_REPO_PREFIX}-mysql-percona-client \
          -e DB_TYPE="mysql:metrics" \
-         --network=mysql-network \
+         --network=percona-network \
          --name=${DOCKER_REPO_PREFIX}-mysql-percona-client \
          ${DOCKER_REPO_PREFIX}/mysql-percona-client "$@"
 }
@@ -88,14 +86,31 @@ postgresql() {
   docker run -t -d \
          -e POSTGRES_USER=${GENERIC_USER} \
          -e POSTGRES_PASSWORD=${GENERIC_PASS} \
+         -e MONITOR_USER=${GENERIC_MONITOR_USER} \
+         -e MONITOR_PASS=${GENERIC_MONITOR_PASS} \
          -v "${HOME}/.postgresql/data:/var/lib/postgresql/data" \
-         --network=postgres-network \
+         --network=percona-network \
          --hostname=postgresql \
          -p ${POSTGRES_PORT}:5432 \
          --name=${DOCKER_REPO_PREFIX}-postgresql \
          --user "$(id -u):$(id -g)" \
          ${DOCKER_REPO_PREFIX}/postgresql "$@" \
          -c "postgresql.conf=/etc/postgresql/postgresql.conf"
+}
+
+postgresql-percona-client() {
+  docker run -t -d \
+         -e PMM_SERVER="${DOCKER_REPO_PREFIX}-percona-server" \
+         -e PMM_USER=${GENERIC_MONITOR_USER} \
+         -e PMM_PASSWORD=${GENERIC_MONITOR_PASS} \
+         -e DB_HOST="${DOCKER_REPO_PREFIX}-postgresql" \
+         -e DB_USER=${GENERIC_MONITOR_USER} \
+         -e DB_PASSWORD=${GENERIC_MONITOR_PASS} \
+         -e CLIENT_NAME=${DOCKER_REPO_PREFIX}-postgresql-percona-client \
+         -e DB_TYPE="postgresql:metrics" \
+         --network=percona-network \
+         --name=${DOCKER_REPO_PREFIX}-postgresql-percona-client \
+         ${DOCKER_REPO_PREFIX}/postgresql-percona-client "$@"
 }
 
 # To allow docker-to-docker communication we must:
