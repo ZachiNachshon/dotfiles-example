@@ -9,8 +9,11 @@ export DOCKER_REGISTRY=r.znkit.co
 ###
 ### Generic Credentials
 ###
-export GENERIC_USERNAME=zachi
-export GENERIC_PASSWORD=admin
+export GENERIC_USER=zachi
+export GENERIC_PASS=admin
+
+export GENERIC_MONITOR_USER=monitor
+export GENERIC_MONITOR_PASS=metrics
 
 ###
 ### Git credentials
