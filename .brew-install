@@ -26,7 +26,8 @@ declare -a CASKS=("alfred"
                   "postman"
                   "spectacle"
                   "tunnelbear"
-                  "zoomus")
+                  "zoomus"
+                  "cheatsheet")
 
 # Manual Download & install:
 #   - Docker
