@@ -1,0 +1,36 @@
+{
+  "@\Uf703" = "moveWordForward:"; /* Cmd + Right Arrow */
+  "@$\UF703" = "moveWordForwardAndModifySelection:"; /* Cmd + Shift + Right Arrow */
+
+  "@\Uf702" = "moveWordBackward:"; /* Cmd + Left Arrow */
+  "@$\UF702" = "moveWordBackwardAndModifySelection:"; /* Cmd + Shift + Left Arrow */
+
+  "@\U007F" = "deleteWordBackward:"; /* Cmd + Mac Delete */
+  "~\U007F" = "deleteToBeginningOfLine:"; /* Alt + Mac Delete */
+
+  "@\UF728" = "deleteWordBackward:"; /* Cmd + PC Delete */
+  "~\UF728" = "deleteToBeginningOfLine:"; /* Cmd + PC Delete */
+
+  "\UF729" = "moveToBeginningOfLine:"; /* Home */
+  "\UF72B" = "moveToEndOfLine:"; /* End */
+
+  "~\Uf703" = "moveToEndOfLine:"; /* Alt + Right Arrow */
+  "~\Uf702" = "moveToBeginningOfLine:"; /* Alt + Left Arrow */
+
+  "$\UF729" = "moveToBeginningOfLineAndModifySelection:"; /* Shift + Home */
+  "$@\UF729" = "moveToBeginningOfLineAndModifySelection:"; /* Shift + Cmd + Home */
+  "$~\UF702" = "moveToBeginningOfLineAndModifySelection:"; /* Shift + Option + Right Arrow */
+
+  "$\UF72B" = "moveToEndOfLineAndModifySelection:"; /* Shift + End */
+  "$@\UF72B" = "moveToEndOfLineAndModifySelection:"; /* Shift + Cmd + End */
+  "$~\UF703" = "moveToEndOfLineAndModifySelection:"; /* Shift + Alt + Left Arrow */
+
+  "~@\UF700" = "moveToBeginningOfDocument:"; /* Cmd + Alt + Up Arrow */
+  "~@\UF701" = "moveToEndOfDocument:"; /* Cmd + Alt + Right Arrow */
+
+  "@$\UF700" = "moveUpAndModifySelection:"; /* Cmd + Shift + Up Arrow */
+  "@$\UF701" = "moveDownAndModifySelection:"; /* Cmd + Shift + Right Arrow */
+
+  "@\UF700" = ("moveUp:","moveUp:","moveUp:","moveUp:","moveUp:","moveUp:","moveUp:","moveUp:",); /* Cmd + Up Arrow */
+  "@\UF701" = ("moveDown:","moveDown:","moveDown:","moveDown:","moveDown:","moveDown:","moveDown:","moveDown:",); /* Cmd + Downs Arrow */
+}

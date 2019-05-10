@@ -22,7 +22,11 @@ dotfiles: ## Installs the dotfiles.
 
 .PHONY: homebrew
 homebrew: ## Installs homebrew packages and casks.
-	-@$(CURDIR)/.brew-install
+	-@$(CURDIR)/install/brew/.brew-install
+
+.PHONY: mac-install
+mac-install: ## Installs MAC OSx defaults & key bindings.
+	-@$(CURDIR)/install/mac/.mac-install
 
 # Need to check before usage
 #	ln -snf $(PWD)/.fonts $(HOME)/Library/Fonts;
