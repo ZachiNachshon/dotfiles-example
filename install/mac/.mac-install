@@ -30,9 +30,6 @@ main() {
   defaults write NSGlobalDomain KeyRepeat -int 1
   defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-  ### Enable dock dark theme
-  defaults write -g NSRequiresAquaSystemAppearance -bool Yes
-
   # Kill all Finder to apply
   Killall Finder
 
