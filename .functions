@@ -10,7 +10,7 @@ service() {
               ;;
 
           start)
-              make run DIR=$2
+              make start DIR=$2
               ;;
 
           build)
