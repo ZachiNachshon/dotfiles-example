@@ -1,9 +1,29 @@
 #!/bin/bash
 
 #
-# Monitoring
+# Grafana
 #
 export GRAFANA_PORT=3000
+
+#
+# Jenkins
+#
+export JENKINS_PORT=49001
+
+#
+# Zookeeper
+#
+export ZOOKEEPER=2181
+
+#
+# Kafka
+#
+export KAFKA=9092
+
+#
+# JFrog Artifactory
+#
+export ARTIFACTORY=2000
 
 #
 # Postgres
