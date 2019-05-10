@@ -15,7 +15,16 @@ export MAVEN_HOME=${ENVIRONMENT}/apache-maven-3.5.2
 export GRADLE_HOME=${ENVIRONMENT}/gradle-4.10.3
 
 # Java
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+#
+# All Java versions home folder is being store in:
+#   - /Library/Java/JavaVirtualMachines/JDK-VERSION/Contents/Home
+#
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
+#export JAVA_10_HOME=$(/usr/libexec/java_home -v10)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+#export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
+export JAVA_HOME=${JAVA_8_HOME} # Use java 1.8 by default
 
 # Go
 export GOROOT=${ENVIRONMENT}/go-root
@@ -32,4 +41,4 @@ export K8S=${HOME}/.k8s
 export SECRETS=${HOME}/.secrets
 
 # Path
-export PATH=$PATH:${GRADLE_HOME}/bin:JAVA_HOME/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}
+export PATH=$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}

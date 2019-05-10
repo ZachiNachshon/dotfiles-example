@@ -13,12 +13,16 @@
 dotfiles: ## Installs the dotfiles.
 	# add aliases for dotfiles
 	# basename concat only the filename, .path from /Users/zachi.nachshon/code/dotfiles/.path
-	for file in $(shell find $(PWD) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea"); do \
+	for file in $(shell find $(PWD) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea" -not -name ".brew-install"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
 #	ln -fn $(PWD)/gitignore $(HOME)/.gitignore;
 #	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+
+.PHONY: homebrew
+homebrew: ## Installs homebrew packages and casks.
+	-@$(CURDIR)/.brew-install
 
 # Need to check before usage
 #	ln -snf $(PWD)/.fonts $(HOME)/Library/Fonts;

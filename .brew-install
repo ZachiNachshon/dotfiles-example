@@ -1,0 +1,116 @@
+#!/bin/bash
+
+#
+# This file should be executed manually to install all homebrew casks
+# Installation paths:
+#   - /usr/local/Homebrew - Homebrew cloned repository
+#   - /usr/local/Cellar   - Homebrew packages
+#   - /usr/local/Caskroom - Homebrew casks
+#   - /usr/local/opt      - symlinks to manage versioning to Cellar/Caskroom folders
+#
+
+declare -a PACKAGES=("fzf" "git" "vegeta" "jmeter" "wget" "telnet")
+
+declare -a CASKS=("alfred"
+                  "java11"
+                  "chrome"
+                  "spotify"
+                  "tableplus"
+                  "slack"
+                  "telegram"
+                  "sublime-text"
+                  "visual-studio-code"
+                  "iterm2"
+                  "flux"
+                  "muzzle"
+                  "postman"
+                  "spectacle"
+                  "tunnelbear"
+                  "zoomus")
+
+# Manual Download & install:
+#   - Docker
+#   - IntelliJ IDEA
+#   - JSON xml parser (iTunes)
+#   - Monosnap
+#   - Unsplash Wallpapers (iTunes)
+
+install_homebrew() {
+
+# Installation to a manual folder - not recommended but optional
+#
+#  if [[ ! -d "~/.homebrew" ]]; then
+#    echo -------------------------- Installing Homebrew ---------------------------
+#
+#    mkdir ~/.homebrew && cd ~/.homebrew
+#    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+#  fi
+
+  if [[ ! -d "/usr/local/Homebrew" ]]; then
+    echo -------------------------- Installing Homebrew ---------------------------
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    echo -e "\n    Done.\n"
+  fi
+}
+
+install_homebrew_taps() {
+  echo ----------------------- Installing Homebrew Taps ------------------------
+  # cask-versions enable us to search supported versions by providing a cask name:
+  #
+  brew tap homebrew/cask-versions
+}
+
+install_packages() {
+  if [[ -z "${PACKAGES}" ]]; then
+    return
+  fi
+
+  for pkg in "${PACKAGES[@]}"
+  do
+    echo --------------------- Installing Package: ${pkg} ----------------------
+    brew install ${pkg}
+  done
+
+  echo -e "\n    Done.\n"
+}
+
+# install_casks Function
+# -----------------------------------
+# Retrieve casks information:
+#   - brew search <cask name>
+#   - brew cask info <cask name>
+# -----------------------------------
+install_casks() {
+  if [[ -z "${CASKS}" ]]; then
+    return
+  fi
+
+  for cask in "${CASKS[@]}"
+  do
+    echo --------------------- Installing Cask: ${cask} ----------------------
+    brew cask install ${cask}
+  done
+
+  echo -e "\n    Done.\n"
+}
+
+list_all() {
+  echo -------------------------- Homebrew Packages ---------------------------
+  brew leaves
+
+  echo ---------------------------- Homebrew Casks ----------------------------
+  brew cask list
+
+  echo -e "\n    Done.\n"
+}
+
+main() {
+  install_homebrew
+  install_homebrew_taps
+#  install_casks
+  list_all
+}
+
+main "$@"
+
