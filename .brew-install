@@ -9,7 +9,7 @@
 #   - /usr/local/opt      - symlinks to manage versioning to Cellar/Caskroom folders
 #
 
-declare -a PACKAGES=("fzf" "git" "vegeta" "jmeter" "wget" "telnet")
+declare -a PACKAGES=("zsh" "fzf" "git" "vegeta" "jmeter" "wget" "telnet")
 
 declare -a CASKS=("alfred"
                   "java11"
