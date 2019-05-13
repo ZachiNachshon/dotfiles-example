@@ -58,7 +58,7 @@ install_homebrew() {
 install_homebrew_taps() {
   echo ----------------------- Installing Homebrew Taps ------------------------
   # cask-versions enable us to search supported versions by providing a cask name:
-  #
+  #   - brew search <cask name>
   brew tap homebrew/cask-versions
 }
 

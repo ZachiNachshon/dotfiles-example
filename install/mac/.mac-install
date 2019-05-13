@@ -33,7 +33,7 @@ main() {
   # Kill all Finder to apply
   Killall Finder
 
-  echo "Restart is needed."
+  echo "Restart is required."
   echo -e "\n    Done.\n"
 }
 
