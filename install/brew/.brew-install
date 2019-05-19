@@ -9,7 +9,7 @@
 #   - /usr/local/opt      - symlinks to manage versioning to Cellar/Caskroom folders
 #
 
-declare -a PACKAGES=("zsh" "fzf" "git" "vegeta" "jmeter" "wget" "telnet")
+declare -a PACKAGES=("zsh" "fzf" "git" "vegeta" "jmeter" "wget" "telnet" "kubernetes-cli")
 
 declare -a CASKS=("alfred"
                   "java11"
@@ -27,7 +27,9 @@ declare -a CASKS=("alfred"
                   "spectacle"
                   "tunnelbear"
                   "zoomus"
-                  "cheatsheet")
+                  "cheatsheet"
+                  "virtualbox"
+                  "minikube")
 
 # Manual Download & install:
 #   - Docker
