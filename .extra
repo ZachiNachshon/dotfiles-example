@@ -29,3 +29,10 @@ export GENERIC_MONITOR_PASS=metrics
 #
 #GH_USER="nickname"
 #git config --global github.user "$GH_USER"
+
+###
+### Terraform
+###
+export TERRAFORM_SPOTINST_TOKEN=PASSWORD
+export TERRAFORM_SPOTINST_ACCOUNT=ACCOUNT-ID
+
