@@ -20,7 +20,7 @@ dotfiles: ## Installs the dotfiles.
 #	ln -fn $(PWD)/gitignore $(HOME)/.gitignore;
 #	git update-index --skip-worktree $(CURDIR)/.gitconfig;
 
-.PHONY: homebrew
+.PHONY: brew-install
 homebrew: ## Installs homebrew packages and casks.
 	-@$(CURDIR)/install/brew/.brew-install
 

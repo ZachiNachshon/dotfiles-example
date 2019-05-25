@@ -6,6 +6,7 @@ export UTILITIES=${HOME}/utilities
 
 export DOT_FILES=${CODEBASE}/github/dotfiles
 export DOCKER_FILES=${CODEBASE}/github/dockerfiles
+export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -24,10 +25,12 @@ export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 #export JAVA_10_HOME=$(/usr/libexec/java_home -v10)
 export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 #export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
-export JAVA_HOME=${JAVA_8_HOME} # Use java 1.8 by default
+export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 
 # Go
-export GOROOT=${ENVIRONMENT}/go-root
+export GOROOT_1_9_2=${ENVIRONMENT}/go-root/1.9.2
+export GOROOT_1_12_5=${ENVIRONMENT}/go-root/1.12.5
+export GOROOT=${GOROOT_1_12_5} # Use Go 1.12.5 by default
 export GOPATH=${HOME}/.go
 
 # Terraform

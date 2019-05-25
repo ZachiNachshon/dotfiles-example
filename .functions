@@ -41,6 +41,29 @@ service() {
   cd ${cur}
 }
 
+load_terraform_provider_spotinst() {
+  local providerFilename="terraform-provider-spotinst_v9.9.9"
+  local providerBuildPath="${GOPATH}/src/github.com/terraform-providers/terraform-provider-spotinst"
+  local providerPath=${TERRAFORM_FILES}/internals/.terraform.d/plugins/darwin_amd64
+
+  cur=$(pwd)
+  cd ${providerBuildPath}
+
+  make fmt
+  go build -o ${providerFilename}
+  sudo chmod +x ${providerFilename}
+  sudo mv ${providerFilename} ${providerPath}
+
+  echo -e "
+Built and copied latest spotinst-terraform-provider:
+  Name..........: ${providerFilename}
+  Build Source..: ${providerBuildPath}
+  Destination...: ${providerPath}
+"
+
+  cd ${cur}
+}
+
 # Create a new directory and enter it
 mkd() {
 	mkdir -p "$@"

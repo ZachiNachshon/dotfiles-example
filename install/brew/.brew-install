@@ -12,7 +12,6 @@
 declare -a PACKAGES=("zsh" "fzf" "git" "vegeta" "jmeter" "wget" "telnet" "kubernetes-cli")
 
 declare -a CASKS=("alfred"
-                  "java11"
                   "chrome"
                   "spotify"
                   "tableplus"
