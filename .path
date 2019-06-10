@@ -32,6 +32,7 @@ export GOROOT_1_9_2=${ENVIRONMENT}/go-root/1.9.2
 export GOROOT_1_12_5=${ENVIRONMENT}/go-root/1.12.5
 export GOROOT=${GOROOT_1_12_5} # Use Go 1.12.5 by default
 export GOPATH=${HOME}/.go
+export GO111MODULE="on" # on/off/auto
 
 # Terraform
 export TERRAFORM_BINARY=${HOME}/.terraform

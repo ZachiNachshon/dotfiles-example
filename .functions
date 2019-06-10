@@ -80,7 +80,7 @@ fs() {
 #
 ##############################################
 load_terraform_provider_spotinst() {
-  local providerFilename="terraform-provider-spotinst_v9.9.9"
+  local providerFilename="terraform-provider-spotinst_v0.12.0"
   local providerBuildPath="${GOPATH}/src/github.com/terraform-providers/terraform-provider-spotinst"
   local providerPath=${TERRAFORM_FILES}/internals/.terraform.d/plugins/darwin_amd64
 
