@@ -23,7 +23,7 @@ export KAFKA=9092
 #
 # JFrog Artifactory
 #
-export ARTIFACTORY=2000
+export ARTIFACTORY_PORT=2000
 
 #
 # Postgres
