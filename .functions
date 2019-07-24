@@ -46,6 +46,17 @@ service() {
   cd ${cur}
 }
 
+reload_envs() {
+  # Load .bashrc and other files...
+  for file in ~/.{bashrc,path,aliases,functions,dockerfunc,exports,extra,ports,fzf.zsh}; do
+    if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+      # shellcheck source=/dev/null
+      source "$file"
+    fi
+  done
+
+  unset file
+}
 
 ##############################################
 #
