@@ -35,7 +35,8 @@ declare -a CASKS=("alfred"
                   "tunnelbear"
                   "zoomus",
                   "docker",
-                  "macpass")
+                  "macpass",
+                  "kap")
 
 # Manual Download & install:
 #   - Docker
