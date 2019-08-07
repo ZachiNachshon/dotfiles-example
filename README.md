@@ -33,15 +33,15 @@ export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 ```
 
 ### Transient Files
-If files in `dotfiles/transient` directory exists, they will be sourced along but won't symlink to $HOME directory.<br/>
+If files in `dotfiles/transient` directory exists, they will be sourced along but won't get symlink to $HOME directory.<br/>
 You can use this to add commands you don’t want to commit to a public repository such as `.secrets` for example.
 
     .
     ├── ...
     ├── dotfiles               
-    │   └── files              # dotfiles that are being symlinked to $HOME directory
+    │   └── files              # dotfiles that are being symlink to $HOME directory and get sourced on new shell session
     │       └── ...            
-    │   └── transient          # dotfiles that gets sourced on every new shell session
+    │   └── transient          # dotfiles that only gets sourced on new shell session
     │       └── .secrets       
     │   └── .dotfiles-scripts  # dotfiles install/uninstall management script 
     └── ...
