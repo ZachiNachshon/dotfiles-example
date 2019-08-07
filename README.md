@@ -46,7 +46,7 @@ You can use this to add commands you don’t want to commit to a public reposito
     │   └── .dotfiles-scripts  # dotfiles install/uninstall management script 
     └── ...
                      
-> It is not recommended to commit the transient files as it may contain sensitive information
+> It is not recommended to commit the transient files as they may contain sensitive information
 
 ## Quick Start Guide
 
