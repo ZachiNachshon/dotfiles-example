@@ -19,4 +19,6 @@ List of available `make` commands:
 4. `mac`       - (optional) install macOS KeyBindings, setup finder customizations and keyboard preferences
 5. `all`       - (optional) execute `install`, `brew` and `mac` in this order
 
+## Quick Start Guide
+
 ![](assets/gifs/dotfiles-make-install-700px.gif)
