@@ -1,6 +1,17 @@
 #!/bin/bash
 
 ########################
+#      Environment
+########################
+export CODEBASE=${HOME}/codebase
+export ENVIRONMENT=${HOME}/environment
+export UTILITIES=${HOME}/utilities
+
+export DOT_FILES=${CODEBASE}/github/dotfiles
+export DOCKER_FILES=${CODEBASE}/github/dockerfiles
+export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
+
+########################
 #         Git
 ########################
 

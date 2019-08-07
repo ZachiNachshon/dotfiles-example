@@ -1,18 +1,10 @@
 #!/bin/bash
 
-export CODEBASE=${HOME}/codebase
-export ENVIRONMENT=${HOME}/environment
-export UTILITIES=${HOME}/utilities
-
-export DOT_FILES=${CODEBASE}/github/dotfiles
-export DOCKER_FILES=${CODEBASE}/github/dockerfiles
-export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
-
+########################
+#      Homebrew
+########################
 export HOMEBREW_CELLAR="/usr/local/Cellar"
 export HOMEBREW_CASKROOM="/usr/local/Caskroom"
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 ########################
 #   Build Automation
@@ -53,4 +45,5 @@ export TF_LOG=DEBUG
 ########################
 #         Path
 ########################
-export PATH=$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}
+# If you come from bash you might have to change your $PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}

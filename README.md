@@ -19,6 +19,19 @@ List of available `make` commands:
 4. `mac`       - (optional) install macOS KeyBindings, setup finder customizations and keyboard preferences
 5. `all`       - (optional) execute `install`, `brew` and `mac` in this order
 
+## Customization
+
+Set `DOT_FILES` and other env vars in an `.exports` file, that looks something like this:
+```bash
+export CODEBASE=${HOME}/codebase
+export ENVIRONMENT=${HOME}/environment
+export UTILITIES=${HOME}/utilities
+
+export DOT_FILES=${CODEBASE}/github/dotfiles
+export DOCKER_FILES=${CODEBASE}/github/dockerfiles
+export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
+```
+
 ## Quick Start Guide
 
 ![](assets/gifs/dotfiles-make-install-700px.gif)

@@ -47,10 +47,10 @@ service() {
 }
 
 # Order is important
-declare -a DOT_FILES_TO_LOAD=(".path"
+declare -a DOT_FILES_TO_LOAD=(".exports"
+                              ".path"
                               ".aliases"
                               ".functions"
-                              ".exports"
                               ".secrets"
                               ".fzf.zsh")
 
