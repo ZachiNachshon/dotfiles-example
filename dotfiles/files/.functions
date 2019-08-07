@@ -51,7 +51,6 @@ declare -a DOT_FILES_TO_LOAD=(".exports"
                               ".path"
                               ".aliases"
                               ".functions"
-                              ".secrets"
                               ".fzf.zsh")
 
 reload_dot_files() {
@@ -64,6 +63,16 @@ reload_dot_files() {
 #  echo "Successfully loaded the following .dotfiles: ${DOT_FILES_TO_LOAD}"
 
   unset DOT_FILES_TO_LOAD
+
+  reload_transient_files
+}
+
+reload_transient_files() {
+  local TRANSIENT_FILES=$(find ${DOT_FILES}/dotfiles/transient -name ".*")
+  for file in ${TRANSIENT_FILES}; do
+    source ${file}
+	done;
+	unset TRANSIENT_FILES
 }
 
 ##############################################

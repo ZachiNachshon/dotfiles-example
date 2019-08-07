@@ -4,7 +4,7 @@ A curated list of `dotfiles` I use for my local development environment.
 ![dotfiles-logo-resized](assets/logos/dotfiles-logo-resized.png)
 
 ## What is it?
-This will create symlinks from this repo to your home folder.<br/>
+This will create symlinks from this repo to your home directory.<br/>
 Additionally, this repository contains:
 - [Homebrew](https://github.com/Homebrew/brew) installation script for common packages and casks that I use
 - macOS custom KeyBindings, Finder customizations and keyboard preferences
@@ -13,8 +13,8 @@ Additionally, this repository contains:
 
 List of available `make` commands:
 
-1. `install`   - create symlink from this repo to $HOME folder
-2. `uninstall` - remove all symlinks from $HOME folder
+1. `install`   - create symlink from this repo to $HOME directory
+2. `uninstall` - remove all symlinks from $HOME directory
 3. `brew`      - (optional) installs commonly used Homebrew packages and casks
 4. `mac`       - (optional) install macOS KeyBindings, setup finder customizations and keyboard preferences
 5. `all`       - (optional) execute `install`, `brew` and `mac` in this order
@@ -31,6 +31,10 @@ export DOT_FILES=${CODEBASE}/github/dotfiles
 export DOCKER_FILES=${CODEBASE}/github/dockerfiles
 export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 ```
+
+### Transient Files
+If files in `dotfiles/transient` directory exists, they will be sourced along with the other files but won't symlink to $HOME directory.<br/>
+You can use this to add commands you don’t want to commit to a public repository such as `.secrets` for example.
 
 ## Quick Start Guide
 
