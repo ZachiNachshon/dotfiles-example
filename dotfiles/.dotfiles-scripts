@@ -34,8 +34,8 @@ install_dotfiles() {
 uninstall_dotfiles() {
   echo --------------------- Uninstalling .dotfiles ---------------------
   local output=""
-  local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
-  for file in ${DOT_FILES_TO_INSTALL}; do
+  local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
+  for file in ${DOT_FILES_TO_UNINSTALL}; do
 		f=$(basename ${file})
 		unlink ${HOME}/${f}
 		output+="\n  ${f}"
