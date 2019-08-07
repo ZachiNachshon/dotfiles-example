@@ -5,7 +5,7 @@ A curated list of `dotfiles` I use for my local development environment.
 
 ## What is it?
 This will create symlinks from this repo to your home folder.<br/>
-Additionally, this repository contains the following optionals:
+Additionally, this repository contains:
 - [Homebrew](https://github.com/Homebrew/brew) installation script for common packages and casks that I use
 - macOS custom KeyBindings, Finder customizations and keyboard preferences
 
