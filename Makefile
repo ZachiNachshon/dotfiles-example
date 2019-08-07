@@ -1,5 +1,5 @@
-#.PHONY: all
-#all: bin dotfiles etc ## Installs the bin and etc directory files and the dotfiles.
+.PHONY: all
+all: install brew mac ## Installs everyting
 #
 #.PHONY: bin
 #bin: ## Installs the bin directory files.
@@ -9,24 +9,21 @@
 #		sudo ln -sf $$file /usr/local/bin/$$f; \
 #	done
 
-.PHONY: dotfiles
-dotfiles: ## Installs the dotfiles.
-	# add aliases for dotfiles
-	# basename concat only the filename, .path from /Users/zachi.nachshon/code/dotfiles/.path
-	for file in $(shell find $(PWD) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea" -not -name "install"); do \
-		f=$$(basename $$file); \
-		ln -sfn $$file $(HOME)/$$f; \
-	done; \
-#	ln -fn $(PWD)/gitignore $(HOME)/.gitignore;
-#	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+.PHONY: uninstall
+uninstall: ## Installs the dotfiles
+	-@$(CURDIR)/dotfiles/.dotfiles-scripts "--uninstall"
 
-.PHONY: brew-install
-homebrew: ## Installs homebrew packages and casks.
-	-@$(CURDIR)/install/brew/.brew-install
+.PHONY: install
+install: ## Installs the dotfiles
+	-@$(CURDIR)/dotfiles/.dotfiles-scripts "--install"
 
-.PHONY: mac-install
-mac-install: ## Installs MAC OSx defaults & key bindings.
-	-@$(CURDIR)/install/mac/.mac-install
+.PHONY: brew
+homebrew: ## Installs homebrew packages and casks
+	-@$(CURDIR)/brew/.brew-install
+
+.PHONY: mac
+mac-install: ## Installs MAC OSx defaults & key bindings
+	-@$(CURDIR)/mac/.mac-install
 
 # Need to check before usage
 #	ln -snf $(PWD)/.fonts $(HOME)/Library/Fonts;

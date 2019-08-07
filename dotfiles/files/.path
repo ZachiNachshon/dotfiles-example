@@ -8,17 +8,24 @@ export DOT_FILES=${CODEBASE}/github/dotfiles
 export DOCKER_FILES=${CODEBASE}/github/dockerfiles
 export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 
+export HOMEBREW_CELLAR="/usr/local/Cellar"
+export HOMEBREW_CASKROOM="/usr/local/Caskroom"
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Build
+########################
+#   Build Automation
+########################
 export MAVEN_HOME=${ENVIRONMENT}/apache-maven-3.5.2
-#export GRADLE_HOME=${ENVIRONMENT}/gradle-4.10.3
-export GRADLE_HOME=${ENVIRONMENT}/gradle-5.5
+export GRADLE_HOME=${ENVIRONMENT}/gradle-4.10.3
+#export GRADLE_HOME=${ENVIRONMENT}/gradle-5.5
 
-# Java
+########################
+#         Java
+########################
 #
-# All Java versions home folder is being store in:
+# All Java versions home folder are being store in:
 #   - /Library/Java/JavaVirtualMachines/JDK-VERSION/Contents/Home
 #
 export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
@@ -28,22 +35,22 @@ export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 #export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
 export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 
-# Go
-export GOROOT_1_9_2=${ENVIRONMENT}/go-root/1.9.2
-export GOROOT_1_12_5=${ENVIRONMENT}/go-root/1.12.5
-export GOROOT=${GOROOT_1_12_5} # Use Go 1.12.5 by default
+########################
+#         Go
+########################
+export GOROOT_1_9_2=${HOMEBREW_CELLAR}/go/1.9.2
+export GOROOT_1_12_7=${HOMEBREW_CELLAR}/go/1.12.7
+export GOROOT=${GOROOT_1_12_7} # Use Go 1.12.5 by default
 export GOPATH=${HOME}/.go
 export GO111MODULE="on" # on/off/auto
 
-# Terraform
+########################
+#       Terraform
+########################
 export TERRAFORM_BINARY=${HOME}/.terraform
 export TF_LOG=DEBUG
 
-# K8s
-export K8S=${HOME}/.k8s
-
-# Secrets
-export SECRETS=${HOME}/.secrets
-
-# Path
+########################
+#         Path
+########################
 export PATH=$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}

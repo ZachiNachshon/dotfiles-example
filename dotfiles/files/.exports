@@ -1,5 +1,23 @@
 #!/bin/bash
 
+########################
+#         Git
+########################
+
+#GIT_AUTHOR_NAME="Your Name"
+#GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+#git config --global user.name "$GIT_AUTHOR_NAME"
+#
+#GIT_AUTHOR_EMAIL="email@you.com"
+#GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+#git config --global user.email "$GIT_AUTHOR_EMAIL"
+#
+#GH_USER="nickname"
+#git config --global github.user "$GH_USER"
+
+########################
+#       History
+########################
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=50000000;
 export HISTFILESIZE=$HISTSIZE;

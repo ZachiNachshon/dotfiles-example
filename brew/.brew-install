@@ -39,7 +39,6 @@ declare -a CASKS=("alfred"
                   "kap")
 
 # Manual Download & install:
-#   - Docker
 #   - IntelliJ IDEA
 #   - JSON xml parser (iTunes)
 #   - Monosnap
@@ -118,7 +117,7 @@ list_all() {
 main() {
   install_homebrew
   install_homebrew_taps
-#  install_casks
+  install_casks
   list_all
 }
 

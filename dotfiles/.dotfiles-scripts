@@ -1,0 +1,64 @@
+#!/bin/bash
+
+print_banner() {
+echo -e "
+██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+"
+}
+
+print_error() {
+  echo "Usage: .dotfiles-scripts --install / .dotfiles-scripts --uninstall"
+  exit 1
+}
+
+install_dotfiles() {
+  print_banner
+  echo --------------------- Installing .dotfiles ---------------------
+  local output=""
+  local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
+  for file in ${DOT_FILES_TO_INSTALL}; do
+		f=$(basename ${file})
+		ln -sfn ${file} ${HOME}/${f}
+		output+="\n  ${f} --> ${file}"
+	done;
+
+  echo -e "\nSuccessfully installed the following .dotfiles:\n" ${output}
+  echo -e "\n    Done.\n"
+}
+
+uninstall_dotfiles() {
+  echo --------------------- Uninstalling .dotfiles ---------------------
+  local output=""
+  local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
+  for file in ${DOT_FILES_TO_INSTALL}; do
+		f=$(basename ${file})
+		unlink ${HOME}/${f}
+		output+="\n  ${f}"
+	done;
+
+  echo -e "\nSuccessfully uninstalled the following .dotfiles:\n" ${output}
+  echo -e "\n    Done.\n"
+}
+
+main() {
+  if [[ $# -eq 0 ]]; then
+    print_error
+  fi
+
+  action=$1
+
+  if [[ ${action} = "--install" ]]; then
+    install_dotfiles
+  elif [[ ${action} = "--uninstall" ]]; then
+    uninstall_dotfiles
+  else
+    print_error
+  fi
+}
+
+main "$@"

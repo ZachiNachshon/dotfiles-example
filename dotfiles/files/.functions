@@ -46,16 +46,24 @@ service() {
   cd ${cur}
 }
 
-reload_envs() {
-  # Load .bashrc and other files...
-  for file in ~/.{bashrc,path,aliases,functions,dockerfunc,exports,extra,ports,fzf.zsh}; do
+# Order is important
+declare -a DOT_FILES_TO_LOAD=(".path"
+                              ".aliases"
+                              ".functions"
+                              ".exports"
+                              ".secrets"
+                              ".fzf.zsh")
+
+reload_dot_files() {
+  for file in "${DOT_FILES_TO_LOAD[@]}"; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-      # shellcheck source=/dev/null
       source "$file"
     fi
   done
 
-  unset file
+#  echo "Successfully loaded the following .dotfiles: ${DOT_FILES_TO_LOAD}"
+
+  unset DOT_FILES_TO_LOAD
 }
 
 ##############################################

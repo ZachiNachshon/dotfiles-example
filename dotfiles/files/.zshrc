@@ -1,25 +1,20 @@
 #!/bin/bash
 
 ###########################################################################
-#                           FROM .bash_profile
+#                             Load .dotfiles
 ###########################################################################
-# Load .bashrc and other files...
-for file in ~/.{bashrc,path,aliases,functions,dockerfunc,exports,extra,ports,fzf.zsh}; do
-	if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-		# shellcheck source=/dev/null
-		source "$file"
-	fi
-done
-
-unset file
+curr=${PWD}
+cd ${HOME}
+source ./.functions
+reload_dot_files
+cd ${curr}
+unset curr
 ###########################################################################
-
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-#ZSH_THEME="robbyrussell"
 ZSH_THEME="agnoster"
 DEFAULT_USER="zachi.nachshon"
 
@@ -65,7 +60,12 @@ DEFAULT_USER="zachi.nachshon"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(
+  git
+  zsh-syntax-highlighting
+  source <(anchor completion -s zsh)
+)
+#source <(anchor completion -s zsh)
 
 # zsh-syntax-highlighting
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -102,22 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-
-#alias ohmyzsh="vim ~/.oh-my-zsh"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /Users/zachi.nachshon/Environment/terraform-binaries/t11.10 t11.10
-
-complete -C /Users/zachi.nachshon/Environment/terraform-binaries/t10.7 t10.7
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh

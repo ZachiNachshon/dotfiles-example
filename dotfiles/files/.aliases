@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# Shortcuts
+########################
+#       Shortcuts
+########################
 alias code="cd ${CODEBASE}"
 alias spot="cd ${CODEBASE}/spotinst"
 alias dl="cd ~/Downloads"
@@ -12,16 +14,22 @@ alias tfspot="cd ${GOPATH}/src/github.com/terraform-providers/terraform-provider
 # launchctl is MAC equivalent to systemctl
 #alias service="launchctl"
 
-# ZSH
+########################
+#       ZSH
+########################
 alias zshconfig="vim ~/.zshrc"
 
-# Java
+########################
+#         Java
+########################
 alias java8='export JAVA_HOME=${JAVA_8_HOME}'
 alias java9='export JAVA_HOME=${JAVA_9_HOME}'
 alias java10='export JAVA_HOME=${JAVA_10_HOME}'
 alias java11='export JAVA_HOME=${JAVA_11_HOME}'
 alias java12='export JAVA_HOME=${JAVA_12_HOME}'
 
-# Go
+########################
+#         GO
+########################
 alias go1.9.2='export GOROOT=${GOROOT_1_9_2}'
-alias go1.12.5='export GOROOT=${GOROOT_1_12_5}'
+alias go1.12.7='export GOROOT=${GOROOT_1_12_7}'

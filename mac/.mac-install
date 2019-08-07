@@ -37,4 +37,4 @@ main() {
   echo -e "\n    Done.\n"
 }
 
-main "#@"
+main "$@"
