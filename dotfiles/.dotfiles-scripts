@@ -22,18 +22,18 @@ install_dotfiles() {
   local output=""
   local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
   for file in ${DOT_FILES_TO_INSTALL}; do
-		f=$(basename ${file})
-		# Install .zsh files only for zsh shell and vice versa for .bash files and bash shell
-		if [[ ${f} == *".zsh"* && $(echo ${SHELL}) != *"zsh"* ]]; then
+    f=$(basename ${file})
+    # Install .zsh files only for zsh shell and vice versa for .bash files and bash shell
+    if [[ ${f} == *".zsh"* && $(echo ${SHELL}) != *"zsh"* ]]; then
       continue
-		elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
+    elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
       continue
-		else
-		  ln -sfn ${file} ${HOME}/${f}
-		fi
+    else
+      ln -sfn ${file} ${HOME}/${f}
+    fi
 
-		output+="\n  ${f} --> ${file}"
-	done;
+    output+="\n  ${f} --> ${file}"
+  done;
 
   echo -e "\nSuccessfully installed the following .dotfiles:\n" ${output}
   echo -e "\n    Done.\n"
@@ -44,18 +44,18 @@ uninstall_dotfiles() {
   local output=""
   local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
   for file in ${DOT_FILES_TO_UNINSTALL}; do
-		f=$(basename ${file})
-		# Uninstall .zsh files only for zsh shell and vice versa for .bash files and bash shell
-		if [[ ${f} == *".zsh"* && $(echo ${SHELL}) != *"zsh"* ]]; then
+    f=$(basename ${file})
+    # Uninstall .zsh files only for zsh shell and vice versa for .bash files and bash shell
+    if [[ ${f} == *".zsh"* && $(echo ${SHELL}) != *"zsh"* ]]; then
       continue
-		elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
+    elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
       continue
-		else
-		  unlink ${HOME}/${f}
-		fi
+    else
+      unlink ${HOME}/${f}
+    fi
 
-		output+="\n  ${f}"
-	done;
+    output+="\n  ${f}"
+  done;
 
   echo -e "\nSuccessfully uninstalled the following .dotfiles:\n" ${output}
   echo -e "\n    Done.\n"
