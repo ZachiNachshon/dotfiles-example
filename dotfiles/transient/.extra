@@ -1,0 +1,15 @@
+#!/bin/bash
+
+########################
+#       Shortcuts
+########################
+alias code="cd ${CODEBASE}"
+alias spot="cd ${CODEBASE}/spotinst"
+alias dl="cd ~/Downloads"
+alias gop="cd ${GOPATH}/src/github.com"
+alias dc="docker-compose"
+alias visual="/usr/bin/jvisualvm &"
+alias tfspot="cd ${GOPATH}/src/github.com/terraform-providers/terraform-provider-spotinst"
+
+# launchctl is MAC equivalent to systemctl
+#alias service="launchctl"

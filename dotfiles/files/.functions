@@ -5,58 +5,57 @@
 #                 SERVICES
 #
 ##############################################
-service() {
-  cur=$(pwd)
-  cd ${DOCKER_FILES}
-
-  case "$1" in
-          list)
-              make list
-              ;;
-
-          start)
-              make start DIR=$2
-              ;;
-
-          build)
-              make build DIR=$2
-              ;;
-
-          push)
-              make push DIR=$2
-              ;;
-
-          stop)
-              make stop DIR=$2
-              ;;
-
-          clean)
-              make clean DIR=$2
-              ;;
-
-          help)
-              make help
-              ;;
-
-          *)
-              echo $"Usage: $0 {build|push|clean|start|stop|list|help}"
-              ;;
-  esac
-
-  cd ${cur}
-}
+#service() {
+#  cur=$(pwd)
+#  cd ${DOCKER_FILES}
+#
+#  case "$1" in
+#          list)
+#              make list
+#              ;;
+#
+#          start)
+#              make start DIR=$2
+#              ;;
+#
+#          build)
+#              make build DIR=$2
+#              ;;
+#
+#          push)
+#              make push DIR=$2
+#              ;;
+#
+#          stop)
+#              make stop DIR=$2
+#              ;;
+#
+#          clean)
+#              make clean DIR=$2
+#              ;;
+#
+#          help)
+#              make help
+#              ;;
+#
+#          *)
+#              echo $"Usage: $0 {build|push|clean|start|stop|list|help}"
+#              ;;
+#  esac
+#
+#  cd ${cur}
+#}
 
 # Order is important
 declare -a DOT_FILES_TO_LOAD=(".exports"
                               ".path"
                               ".aliases"
-                              ".functions"
-                              ".fzf.zsh")
+                              ".functions")
 
 reload_dot_files() {
   for file in "${DOT_FILES_TO_LOAD[@]}"; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-      source "$file"
+      source ${file}
     fi
   done
 
@@ -64,15 +63,13 @@ reload_dot_files() {
 
   unset DOT_FILES_TO_LOAD
 
-  reload_transient_files
+  _reload_transient_files
 }
 
-reload_transient_files() {
-  local TRANSIENT_FILES=$(find ${DOT_FILES}/dotfiles/transient -name ".*")
-  for file in ${TRANSIENT_FILES}; do
+_reload_transient_files() {
+  for file in $(find ${DOT_FILES}/dotfiles/transient -name ".*"); do
     source ${file}
 	done;
-	unset TRANSIENT_FILES
 }
 
 ##############################################

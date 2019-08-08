@@ -9,9 +9,8 @@ export HOMEBREW_CASKROOM="/usr/local/Caskroom"
 ########################
 #   Build Automation
 ########################
-export MAVEN_HOME=${ENVIRONMENT}/apache-maven-3.5.2
-export GRADLE_HOME=${ENVIRONMENT}/gradle-4.10.3
-#export GRADLE_HOME=${ENVIRONMENT}/gradle-5.5
+export MAVEN_HOME=${HOMEBREW_CELLAR}/maven/3.6.1
+export GRADLE_HOME=${HOMEBREW_CELLAR}/gradle/5.5.1
 
 ########################
 #         Java
@@ -32,18 +31,22 @@ export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 ########################
 export GOROOT_1_9_2=${HOMEBREW_CELLAR}/go/1.9.2
 export GOROOT_1_12_7=${HOMEBREW_CELLAR}/go/1.12.7
-export GOROOT=${GOROOT_1_12_7} # Use Go 1.12.5 by default
+export GOROOT=${GOROOT_1_12_7} # Use Go 1.12.7 by default
 export GOPATH=${HOME}/.go
 export GO111MODULE="on" # on/off/auto
 
 ########################
 #       Terraform
 ########################
-export TERRAFORM_BINARY=${HOME}/.terraform
 export TF_LOG=DEBUG
 
 ########################
 #         Path
 ########################
 # If you come from bash you might have to change your $PATH
-export PATH=$HOME/bin:/usr/local/bin:$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${TERRAFORM_BINARY}:${GOROOT}/bin:${GOPATH}/bin:${K8S}
+export PATH=$HOME/bin:/usr/local/bin:$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin
+
+unset HOMEBREW_CELLAR
+unset HOMEBREW_CASKROOM
+unset GOROOT_1_9_2
+unset GOROOT_1_12_7

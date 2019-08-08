@@ -45,7 +45,15 @@ uninstall_dotfiles() {
   local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
   for file in ${DOT_FILES_TO_UNINSTALL}; do
 		f=$(basename ${file})
-		unlink ${HOME}/${f}
+		# Uninstall .zsh files only for zsh shell and vice versa for .bash files and bash shell
+		if [[ ${f} == *".zsh"* && $(echo ${SHELL}) != *"zsh"* ]]; then
+      continue
+		elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
+      continue
+		else
+		  unlink ${HOME}/${f}
+		fi
+
 		output+="\n  ${f}"
 	done;
 

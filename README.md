@@ -21,7 +21,7 @@ List of available `make` commands:
 
 ## Customization
 
-Set `DOT_FILES` and other env vars in an `.exports` file, that looks something like this:
+Set `DOT_FILES` and other custom paths as env vars in the `dotfiles/files/.exports` file, should look something like this:
 ```bash
 export CODEBASE=${HOME}/codebase
 export ENVIRONMENT=${HOME}/environment
@@ -42,11 +42,12 @@ You can use this to add commands you don’t want to commit to a public reposito
     │   └── files              # dotfiles that are being symlink to $HOME directory and get sourced on new shell session
     │       └── ...            
     │   └── transient          # dotfiles that only gets sourced on new shell session
+    │       ├── .extra       
     │       └── .secrets       
     │   └── .dotfiles-scripts  # dotfiles install/uninstall management script 
     └── ...
                      
-> It is not recommended to commit the transient files as they may contain sensitive information
+> It is not recommended to commit the .secret transient file as it may contain sensitive information
 
 ## Quick Start Guide
 
