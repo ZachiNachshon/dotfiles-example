@@ -72,6 +72,18 @@ _reload_transient_files() {
 	done;
 }
 
+print_brew_content() {
+  echo -e "
+==> Homebrew packages:"
+  ls -1 ${HOMEBREW_CELLAR}
+
+  echo -e "
+==> Homebrew casks:"
+  ls -1 ${HOMEBREW_CASKROOM}
+
+  echo "\n"
+}
+
 ##############################################
 #
 #                  SYSTEM

@@ -46,7 +46,5 @@ export TF_LOG=DEBUG
 # If you come from bash you might have to change your $PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin
 
-unset HOMEBREW_CELLAR
-unset HOMEBREW_CASKROOM
 unset GOROOT_1_9_2
 unset GOROOT_1_12_7
