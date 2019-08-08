@@ -18,6 +18,7 @@ List of available `make` commands:
 3. `brew`      - (optional) installs commonly used Homebrew packages and casks
 4. `mac`       - (optional) install macOS KeyBindings, setup finder customizations and keyboard preferences
 5. `all`       - (optional) execute `install`, `brew` and `mac` in this order
+6. `help`      - (optional) get available actions
 
 ## Customization
 
