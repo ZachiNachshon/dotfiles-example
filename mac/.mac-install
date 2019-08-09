@@ -1,16 +1,42 @@
 #!/bin/bash
 
+print_banner() {
+  echo -e "
+███╗   ███╗ █████╗  ██████╗    ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
+████╗ ████║██╔══██╗██╔════╝    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
+██╔████╔██║███████║██║         ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
+██║╚██╔╝██║██╔══██║██║         ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
+██║ ╚═╝ ██║██║  ██║╚██████╗    ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
+╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+"
+}
 
-main() {
+install_key_bindings() {
+
+  echo -e "
+=======================================================================
+                        Installing KeyBindings
+=======================================================================
+"
 
   if [[ ! -d "~/Library/KeyBindings" ]]; then
-    echo ------------------------ Installing KeyBindings -------------------------
+    echo "  Installing..."
     mkdir -p ~/Library/KeyBindings
     cp ./DefaultKeyBinding.dict ~/Library/KeyBindings
+  else
+    echo "  Already installed."
   fi
 
-  echo --------------------------- Installing Defaults ---------------------------
+  echo -e "\n    Done.\n"
+}
 
+override_defaults() {
+
+  echo -e "
+=======================================================================
+                        Overriding KeyBindings
+=======================================================================
+"
   ### Finder: show hidden files by default
   defaults write com.apple.finder AppleShowAllFiles -bool true
 
@@ -33,8 +59,23 @@ main() {
   # Kill all Finder to apply
   Killall Finder
 
-  echo "Restart is required."
+  echo "  Restart is required."
   echo -e "\n    Done.\n"
+}
+
+verify_pre_install() {
+  read -p "Do you want to override macOS defaults and change key bindings? (y/n): " input
+  if [[ ${input} != "y" ]]; then
+    echo -e "\n    Nothing has changed.\n"
+    exit 0
+  fi
+}
+
+main() {
+  print_banner
+  verify_pre_install
+  install_key_bindings
+  override_defaults
 }
 
 main "$@"

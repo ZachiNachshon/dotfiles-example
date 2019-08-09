@@ -1,5 +1,16 @@
 #!/bin/bash
 
+print_banner() {
+  echo -e "
+██████╗ ██████╗ ███████╗██╗    ██╗    ██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗
+██╔══██╗██╔══██╗██╔════╝██║    ██║    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║
+██████╔╝██████╔╝█████╗  ██║ █╗ ██║    ██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║
+██╔══██╗██╔══██╗██╔══╝  ██║███╗██║    ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║
+██████╔╝██║  ██║███████╗╚███╔███╔╝    ██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗
+╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚══╝╚══╝     ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+"
+}
+
 # Homebrew cheatsheet
 # -----------------------------------
 # brew install git	        Install a package
@@ -68,6 +79,12 @@ declare -a CASKS=("alfred"
 
 install_homebrew() {
 
+    echo -e "
+=======================================================================
+                         Installing HomeBrew
+=======================================================================
+"
+
 # Installation to a manual folder - not recommended but optional
 #
 #  if [[ ! -d "~/.homebrew" ]]; then
@@ -127,7 +144,7 @@ install_casks() {
 
 echo -e "
 =======================================================================
-                       Installing HomeBrew Casks
+                      Installing HomeBrew Casks
 =======================================================================
 "
 
@@ -156,7 +173,18 @@ echo -e "
   echo -e "\n    Done.\n"
 }
 
+verify_pre_install() {
+#  echo -e "\n"
+  read -p "Do you want to install Homebrew with additional packages and casks? (y/n): " input
+  if [[ ${input} != "y" ]]; then
+    echo -e "\n    Nothing has changed.\n"
+    exit 0
+  fi
+}
+
 main() {
+  print_banner
+  verify_pre_install
   install_homebrew
   install_homebrew_taps
   install_packages
