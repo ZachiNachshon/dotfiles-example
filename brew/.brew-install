@@ -73,6 +73,7 @@ declare -a CASKS=("alfred"
 
 # Manual Download & install:
 #   - IntelliJ IDEA
+#   - Goland
 #   - JSON xml parser (iTunes)
 #   - Monosnap
 #   - Unsplash Wallpapers (iTunes)
