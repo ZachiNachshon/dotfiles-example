@@ -42,6 +42,7 @@ print_banner() {
 #
 
 declare -a PACKAGES=("zsh"
+                     "zsh-syntax-highlighting"
                      "fzf"
                      "git"
                      "vegeta"
@@ -101,16 +102,14 @@ install_homebrew() {
   else
     echo "  Already installed."
   fi
-
-  echo -e "\n    Done.\n"
 }
 
 install_homebrew_taps() {
-  echo "  Tapping to homebrew/cask-versions..."
+  echo -e "  Tapping to homebrew/cask-versions...\n"
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
-  echo -e "\n    Done.\n"
+  echo "    Done."
 }
 
 install_packages() {
@@ -157,9 +156,9 @@ echo -e "
   for cask in "${CASKS[@]}"
   do
     echo -e "
-===================
+================
 Installing Cask: ${cask}
-===================
+================
 "
     brew cask install ${cask}
   done
