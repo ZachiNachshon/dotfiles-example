@@ -143,10 +143,14 @@ echo -e "
 }
 
 list_all() {
-  echo -------------------------- Homebrew Packages ---------------------------
+  echo -e "
+  ==> Installed Homebrew Packages:
+"
   brew leaves
 
-  echo ---------------------------- Homebrew Casks ----------------------------
+echo -e "
+  ==> Installed Homebrew Casks:
+"
   brew cask list
 
   echo -e "\n    Done.\n"
