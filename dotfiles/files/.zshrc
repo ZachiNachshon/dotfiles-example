@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEFAULT_USER="zachi.nachshon"
+
 ###########################################################################
 #                             Load .dotfiles
 ###########################################################################
@@ -16,7 +18,6 @@ unset curr
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 ZSH_THEME="agnoster"
-DEFAULT_USER="zachi.nachshon"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -63,8 +64,9 @@ DEFAULT_USER="zachi.nachshon"
 plugins=(
   git
   zsh-syntax-highlighting
-  source <(anchor completion -s zsh)
 )
+
+# Enable after anchor is available to allow auto completion
 #source <(anchor completion -s zsh)
 
 # zsh-syntax-highlighting

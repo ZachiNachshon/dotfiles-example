@@ -150,8 +150,7 @@ install_casks() {
 echo -e "
 =======================================================================
                       Installing HomeBrew Casks
-=======================================================================
-"
+======================================================================="
 
   for cask in "${CASKS[@]}"
   do
@@ -180,6 +179,28 @@ echo -e "
   echo -e "\n    Done.\n"
 }
 
+install_custom() {
+
+echo -e "
+=======================================================================
+                     Installing 3rd Party Content
+======================================================================="
+
+  echo -e "
+===========
+Installing: oh-my-zsh
+===========
+
+  oh-my-zsh installation opens a new shell.
+  After installation completes type exit to return to current shell.
+"
+  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+  echo -e "  Enabling zsh-syntax-highlighting on oh-my-zsh...\n"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  echo -e "\n    Done.\n"
+}
+
 verify_pre_install() {
   read -p "Do you want to install Homebrew with additional packages and casks? (y/n): " input
   if [[ ${input} != "y" ]]; then
@@ -196,6 +217,7 @@ main() {
   install_packages
   install_casks
   list_all
+  install_custom
 }
 
 main "$@"

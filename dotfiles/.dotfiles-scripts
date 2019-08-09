@@ -7,7 +7,7 @@ print_banner() {
 ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
 ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
 ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
-╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝ (shell: ${SHELL})
 "
 }
 
@@ -17,7 +17,6 @@ print_error() {
 }
 
 install_dotfiles() {
-  print_banner
   echo --------------------- Installing .dotfiles ---------------------
   local output=""
   local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
@@ -61,6 +60,22 @@ uninstall_dotfiles() {
   echo -e "\n    Done.\n"
 }
 
+verify_pre_install() {
+  read -p "Do you want to install dotfiles symlinks for [${SHELL}]? (y/n): " input
+  if [[ ${input} != "y" ]]; then
+    echo -e "\n    Nothing has changed.\n"
+    exit 0
+  fi
+}
+
+verify_pre_uninstall() {
+  read -p "Do you want to uninstall all dotfiles symlinks? (y/n): " input
+  if [[ ${input} != "y" ]]; then
+    echo -e "\n    Nothing has changed.\n"
+    exit 0
+  fi
+}
+
 main() {
   if [[ $# -eq 0 ]]; then
     print_error
@@ -69,8 +84,11 @@ main() {
   action=$1
 
   if [[ ${action} = "--install" ]]; then
+    print_banner
+    verify_pre_install
     install_dotfiles
   elif [[ ${action} = "--uninstall" ]]; then
+    verify_pre_uninstall
     uninstall_dotfiles
   else
     print_error
