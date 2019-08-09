@@ -42,7 +42,7 @@ declare -a PACKAGES=("zsh"
                      "gradle")
 
 declare -a CASKS=("alfred"
-                  "chrome"
+                  "google-chrome"
                   "spotify"
                   "tableplus"
                   "slack"
