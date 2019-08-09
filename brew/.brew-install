@@ -99,7 +99,9 @@ install_packages() {
 
   for pkg in "${PACKAGES[@]}"
   do
-    echo --------------------- Installing Package: ${pkg} ----------------------
+    echo -e "
+--------------------- Installing Package: ${pkg} ----------------------
+"
     brew install ${pkg}
   done
 
@@ -119,7 +121,9 @@ install_casks() {
 
   for cask in "${CASKS[@]}"
   do
-    echo --------------------- Installing Cask: ${cask} ----------------------
+    echo -e "
+--------------------- Installing Cask: ${cask} ----------------------
+"
     brew cask install ${cask}
   done
 
@@ -139,6 +143,7 @@ list_all() {
 main() {
   install_homebrew
   install_homebrew_taps
+  install_packages
   install_casks
   list_all
 }
