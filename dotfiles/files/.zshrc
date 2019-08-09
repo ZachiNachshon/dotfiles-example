@@ -73,7 +73,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/zachi.nachshon/.oh-my-zsh
+export ZSH=/Users/${DEFAULT_USER}/.oh-my-zsh
 
 source $ZSH/oh-my-zsh.sh
 
