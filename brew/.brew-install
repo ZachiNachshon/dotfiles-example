@@ -95,18 +95,21 @@ install_homebrew() {
 #  fi
 
   if [[ ! -d "/usr/local/Homebrew" ]]; then
-    echo -------------------------- Installing Homebrew ---------------------------
+    echo "  Installing..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-    echo -e "\n    Done.\n"
+  else
+    echo "  Already installed."
   fi
+
+  echo -e "\n    Done.\n"
 }
 
 install_homebrew_taps() {
-  echo ----------------------- Installing Homebrew Taps ------------------------
+  echo "  Tapping to homebrew/cask-versions..."
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
+  echo -e "\n    Done.\n"
 }
 
 install_packages() {
@@ -123,7 +126,9 @@ install_packages() {
   for pkg in "${PACKAGES[@]}"
   do
     echo -e "
---------------------- Installing Package: ${pkg} ----------------------
+===================
+Installing Package: ${pkg}
+===================
 "
     brew install ${pkg}
   done
@@ -151,7 +156,9 @@ echo -e "
   for cask in "${CASKS[@]}"
   do
     echo -e "
---------------------- Installing Cask: ${cask} ----------------------
+===================
+Installing Cask: ${cask}
+===================
 "
     brew cask install ${cask}
   done
@@ -174,7 +181,6 @@ echo -e "
 }
 
 verify_pre_install() {
-#  echo -e "\n"
   read -p "Do you want to install Homebrew with additional packages and casks? (y/n): " input
   if [[ ${input} != "y" ]]; then
     echo -e "\n    Nothing has changed.\n"
