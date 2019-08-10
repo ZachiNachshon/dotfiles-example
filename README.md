@@ -4,7 +4,8 @@ A curated list of `dotfiles` I use for my local development environment.
 ![dotfiles-logo-resized](assets/logos/dotfiles-logo-resized.png)
 
 ## What is it?
-This will create symlinks from this repo to your home directory.<br/>
+This repository intended to consolidate commonly used .dotfiles to a single place.<br/>
+It creates symlinks from [dotfiles directory](dotfiles/files) to your home directory.<br/>
 Additionally, this repository contains:
 - [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew/.brew-install) that I use
 - macOS custom KeyBindings, Finder customizations and keyboard preferences

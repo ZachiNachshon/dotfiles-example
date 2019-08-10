@@ -17,7 +17,7 @@ print_error() {
 }
 
 install_dotfiles() {
-  echo --------------------- Installing .dotfiles ---------------------
+  echo -e "\n--------------------- Installing .dotfiles ---------------------"
   local output=""
   local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
   for file in ${DOT_FILES_TO_INSTALL}; do
@@ -39,7 +39,7 @@ install_dotfiles() {
 }
 
 uninstall_dotfiles() {
-  echo --------------------- Uninstalling .dotfiles ---------------------
+  echo -e "\n--------------------- Uninstalling .dotfiles ---------------------"
   local output=""
   local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
   for file in ${DOT_FILES_TO_UNINSTALL}; do
