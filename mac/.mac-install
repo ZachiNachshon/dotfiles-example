@@ -19,24 +19,27 @@ install_key_bindings() {
 =======================================================================
 "
 
-  if [[ ! -d "~/Library/KeyBindings" ]]; then
+  if [[ ! -d "${HOME}/Library/KeyBindings" ]]; then
     echo "  Installing..."
-    mkdir -p ~/Library/KeyBindings
-    cp ./DefaultKeyBinding.dict ~/Library/KeyBindings
+    mkdir -p ${HOME}/Library/KeyBindings
+    cp mac/DefaultKeyBinding.dict ${HOME}/Library/KeyBindings
   else
     echo "  Already installed."
   fi
 
-  echo -e "\n    Done.\n"
+  echo -e "\n    Done."
 }
 
 override_defaults() {
 
   echo -e "
 =======================================================================
-                        Overriding KeyBindings
+                      Overriding macOS Defaults
 =======================================================================
 "
+
+  echo "  Overriding..."
+
   ### Finder: show hidden files by default
   defaults write com.apple.finder AppleShowAllFiles -bool true
 
@@ -59,7 +62,7 @@ override_defaults() {
   # Kill all Finder to apply
   Killall Finder
 
-  echo "  Restart is required."
+  echo -e "\n  Restart is required."
   echo -e "\n    Done.\n"
 }
 

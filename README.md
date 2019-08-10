@@ -52,4 +52,11 @@ You can use this to add commands you don’t want to commit to a public reposito
 
 ## Quick Start Guide
 
-![](assets/gifs/dotfiles-make-install-700px.gif)
+#### `make install`
+![](assets/gifs/dotfiles-install-700px.gif)
+
+#### `make brew`
+![](assets/gifs/brew-install-700px.gif)
+
+#### `make mac`
+![](assets/gifs/mac-install-700px.gif)
