@@ -19,12 +19,12 @@ export GRADLE_HOME=${HOMEBREW_CELLAR}/gradle/5.5.1
 # All Java versions home folder are being store in:
 #   - /Library/Java/JavaVirtualMachines/JDK-VERSION/Contents/Home
 #
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 #export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
 #export JAVA_10_HOME=$(/usr/libexec/java_home -v10)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+#export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 #export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
-export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
+#export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 
 ########################
 #         Go
