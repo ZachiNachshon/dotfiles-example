@@ -8,7 +8,7 @@ DEFAULT_USER="zachi.nachshon"
 curr=${PWD}
 cd ${HOME}
 source ./.functions
-reload_dot_files
+_reload_dot_files_inner
 cd ${curr}
 unset curr
 ###########################################################################
@@ -66,9 +66,6 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-# Enable after anchor is available to allow auto completion
-#source <(anchor completion -s zsh)
-
 # zsh-syntax-highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -104,5 +101,8 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+
+# Used for anchor auto completion - load /usr/local/share/zsh/site-functions/_anchor
+autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh

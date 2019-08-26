@@ -19,18 +19,18 @@ export GRADLE_HOME=${HOMEBREW_CELLAR}/gradle/5.5.1
 # All Java versions home folder are being store in:
 #   - /Library/Java/JavaVirtualMachines/JDK-VERSION/Contents/Home
 #
-#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
 #export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
 #export JAVA_10_HOME=$(/usr/libexec/java_home -v10)
 #export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
 #export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
-#export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
+export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 
 ########################
 #         Go
 ########################
-export GOROOT_1_9_2=${HOMEBREW_CELLAR}/go/1.9.2
-export GOROOT_1_12_7=${HOMEBREW_CELLAR}/go/1.12.7
+export GOROOT_1_9_2=${ENVIRONMENT}/go1.9.2
+export GOROOT_1_12_7=${ENVIRONMENT}/go1.12.7
 export GOROOT=${GOROOT_1_12_7} # Use Go 1.12.7 by default
 export GOPATH=${HOME}/.go
 export GO111MODULE="on" # on/off/auto
@@ -43,7 +43,6 @@ export TF_LOG=DEBUG
 ########################
 #         Path
 ########################
-# If you come from bash you might have to change your $PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH:${GRADLE_HOME}/bin:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin
 
 unset GOROOT_1_9_2

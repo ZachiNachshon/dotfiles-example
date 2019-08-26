@@ -6,7 +6,7 @@
 curr=${PWD}
 cd ${HOME}
 source ./.functions
-reload_dot_files
+_reload_dot_files_inner
 cd ${curr}
 unset curr
 ###########################################################################

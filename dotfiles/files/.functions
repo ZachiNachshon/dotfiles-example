@@ -46,16 +46,26 @@
 #  cd ${cur}
 #}
 
+reload_dot_files() {
+  curr=${PWD}
+  cd ${HOME}
+  source ./.functions
+  _reload_dot_files_inner
+  cd ${curr}
+  unset curr
+}
+
 # Order is important
 declare -a DOT_FILES_TO_LOAD=(".exports"
                               ".path"
                               ".aliases"
                               ".functions")
 
-reload_dot_files() {
+_reload_dot_files_inner() {
   for file in "${DOT_FILES_TO_LOAD[@]}"; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-      source ${file}
+#      echo "${HOME}/${file}"
+      source ${HOME}/${file}
     fi
   done
 

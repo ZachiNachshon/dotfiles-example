@@ -44,6 +44,7 @@ print_banner() {
 declare -a PACKAGES=("zsh"
                      "zsh-syntax-highlighting"
                      "fzf"
+                     "watch"
                      "git"
                      "vegeta"
                      "jmeter"
