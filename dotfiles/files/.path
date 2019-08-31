@@ -10,7 +10,7 @@ export HOMEBREW_CASKROOM="/usr/local/Caskroom"
 #   Build Automation
 ########################
 export MAVEN_HOME=${HOMEBREW_CELLAR}/maven/3.6.1
-export GRADLE_HOME=${HOMEBREW_CELLAR}/gradle/5.5.1
+export GRADLE_HOME=${HOMEBREW_CELLAR}/gradle/5.6.1
 
 ########################
 #         Java
@@ -30,8 +30,8 @@ export JAVA_HOME=${JAVA_8_HOME} # Use Java 1.8 by default
 #         Go
 ########################
 export GOROOT_1_9_2=${ENVIRONMENT}/go1.9.2
-export GOROOT_1_12_7=${ENVIRONMENT}/go1.12.7
-export GOROOT=${GOROOT_1_12_7} # Use Go 1.12.7 by default
+export GOROOT_1_12_9=${ENVIRONMENT}/go1.12.9
+export GOROOT=${GOROOT_1_12_9} # Use Go 1.12.9 by default
 export GOPATH=${HOME}/.go
 export GO111MODULE="on" # on/off/auto
 
