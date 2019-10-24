@@ -123,6 +123,24 @@ fs() {
 
 ##############################################
 #
+#                   IDEs
+#
+##############################################
+kill_intellij() {
+  local pid=$(ps -ef | grep -v grep | grep idea | awk '{print $2}')
+
+  if [[ -z ${pid} ]]; then
+    echo "Killing idea process ${pid}..."
+    kill -9 ${pid}
+  else
+    echo "Idea is not running."
+  fi
+
+  echo "\n  Done.\n"
+}
+
+##############################################
+#
 #                TERRAFORM
 #
 ##############################################

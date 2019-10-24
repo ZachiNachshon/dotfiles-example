@@ -52,7 +52,9 @@ declare -a PACKAGES=("zsh"
                      "telnet"
                      "kubernetes-cli"
                      "kubernetes-helm"
-                     "gradle")
+                     "gradle"
+                     "mvn"
+                     "python")
 
 declare -a CASKS=("alfred"
                   "google-chrome"
@@ -72,7 +74,8 @@ declare -a CASKS=("alfred"
                   "zoomus"
                   "docker"
                   "macpass"
-                  "kap")
+                  "kap"
+                  "macdown")
 
 # Manual Download & install:
 #   - IntelliJ IDEA
