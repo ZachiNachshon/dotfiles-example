@@ -75,7 +75,8 @@ declare -a CASKS=("alfred"
                   "docker"
                   "macpass"
                   "kap"
-                  "macdown")
+                  "macdown"
+                  "licecap")
 
 # Manual Download & install:
 #   - IntelliJ IDEA
