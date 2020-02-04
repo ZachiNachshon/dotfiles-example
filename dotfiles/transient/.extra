@@ -13,5 +13,13 @@ alias dc="docker-compose"
 alias visualvm="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/bin/jvisualvm &"
 #alias visual="/usr/bin/jvisualvm &"
 
+########################
+#       IntelliJ
+########################
+alias ij-cache="cd ~/Library/Caches/${INTELLIJ_VERSION_FOLDER}"
+alias ij-pref="cd ~/Library/Preferences/${INTELLIJ_VERSION_FOLDER}"
+alias ij-plug="cd ~/Library/Application\ Support/${INTELLIJ_VERSION_FOLDER}"
+alias ij-logs="cd ~/Library/Logs/${INTELLIJ_VERSION_FOLDER}"
+
 # launchctl is MAC equivalent to systemctl
 #alias service="launchctl"

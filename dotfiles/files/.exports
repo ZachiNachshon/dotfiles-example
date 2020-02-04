@@ -12,6 +12,11 @@ export DOCKER_FILES=${CODEBASE}/github/dockerfiles
 export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 
 ########################
+#       IntelliJ
+########################
+export INTELLIJ_VERSION_FOLDER=IdeaIC2019.3
+
+########################
 #         Git
 ########################
 
