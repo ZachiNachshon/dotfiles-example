@@ -79,7 +79,7 @@ declare -a CASKS=("alfred"
                   "licecap")
 
 # Manual Download & install:
-#   - IntelliJ IDEA
+#   - IntelliJ IDEA (plugins: Material Theme UI, Atom Material Icons, Rainbow Brackets, Makefile Support)
 #   - Goland
 #   - JSON xml parser (iTunes)
 #   - Monosnap
