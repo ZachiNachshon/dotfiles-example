@@ -15,6 +15,7 @@ print_banner() {
 # -----------------------------------
 # brew install git          Install a package
 # brew install git@2.0.0    Install a package with specific version
+# brew uninstall git        Uninstall a package
 # brew upgrade git          Upgrade a package
 # brew unlink git           Unlink
 # brew link git             Link
@@ -54,7 +55,9 @@ declare -a PACKAGES=("zsh"
                      "kubernetes-helm"
                      "gradle"
                      "mvn"
-                     "python")
+                     "python"
+                     "derailed/k9s/k9s"
+                     "graphviz")
 
 declare -a CASKS=("alfred"
                   "google-chrome"
