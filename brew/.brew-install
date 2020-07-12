@@ -78,8 +78,9 @@ declare -a CASKS=("alfred"
                   "docker"
                   "macpass"
                   "kap"
-                  "macdown"
+                  "typora"
                   "licecap")
+#                  "macdown"
 
 # Manual Download & install:
 #   - IntelliJ IDEA (plugins: Material Theme UI, Atom Material Icons, Rainbow Brackets, Makefile Support)

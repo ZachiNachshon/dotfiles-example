@@ -19,3 +19,8 @@ alias java12='export JAVA_HOME=${JAVA_12_HOME}'
 ########################
 alias go1.9.2='export GOROOT=${GOROOT_1_9_2}'
 alias go1.12.7='export GOROOT=${GOROOT_1_12_7}'
+
+########################
+#         APPS
+########################
+alias typora="open -a typora"
