@@ -7,7 +7,7 @@ A curated list of `dotfiles` I use for my local development environment.
 This repository intended to consolidate commonly used .dotfiles to a single place.<br/>
 It creates symlinks from [dotfiles directory](dotfiles/files) to your home directory.<br/>
 Additionally, this repository contains:
-- [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew/.brew-install) that I use
+- [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew/brew-install.sh) that I use
 - macOS custom KeyBindings, Finder customizations and keyboard preferences
 
 ## Getting Started
@@ -16,7 +16,7 @@ List of available `make` commands:
 
 1. `install`   - create symlinks from this repo to $HOME directory
 2. `uninstall` - remove all symlinks from $HOME directory
-3. `brew`      - (optional) install commonly used Homebrew [packages and casks](brew/.brew-install)
+3. `brew`      - (optional) install commonly used Homebrew [packages and casks](brew/brew-install.sh)
 4. `mac`       - (optional) install macOS KeyBindings, setup finder customizations and keyboard preferences
 5. `all`       - (optional) execute `install`, `brew` and `mac` in this order
 6. `help`      - (optional) get available actions

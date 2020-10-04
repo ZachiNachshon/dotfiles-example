@@ -43,83 +43,79 @@ print_banner() {
 #
 
 declare -a PACKAGES=("zsh"
-                     "zsh-syntax-highlighting"
-                     "fzf"
-                     "watch"
-                     "git"
-                     "vegeta"
-                     "jmeter"
-                     "wget"
-                     "telnet"
-                     "kubernetes-cli"
-                     "kubernetes-helm"
-                     "gradle"
-                     "mvn"
-                     "python"
-                     "derailed/k9s/k9s"
-                     "graphviz")
+  "zsh-syntax-highlighting"
+  "fzf"
+  "watch"
+  "git"
+  "vegeta"
+  "wget"
+  "telnet"
+  "kubernetes-cli"
+  "kubernetes-helm"
+  "gradle"
+  "python"
+  "derailed/k9s/k9s"
+  "graphviz")
 
 declare -a CASKS=("alfred"
-                  "google-chrome"
-                  "spotify"
-                  "tableplus"
-                  "slack"
-                  "telegram"
-                  "whatsapp"
-                  "sublime-text"
-                  "visual-studio-code"
-                  "iterm2"
-                  "flux"
-                  "muzzle"
-                  "postman"
-                  "spectacle"
-                  "tunnelbear"
-                  "zoomus"
-                  "docker"
-                  "macpass"
-                  "kap"
-                  "typora"
-                  "licecap")
-#                  "macdown"
+  "google-chrome"
+  "spotify"
+  "tableplus"
+  "slack"
+  "telegram"
+  "whatsapp"
+  "sublime-text"
+  "visual-studio-code"
+  "iterm2"
+  "flux"
+  "muzzle"
+  "postman"
+  "spectacle"
+  "tunnelbear"
+  "zoomus"
+  "docker-edge"
+  "macpass"
+  "kap"
+  "typora"
+  "licecap")
 
 # Manual Download & install:
 #   - IntelliJ IDEA (plugins: Material Theme UI, Atom Material Icons, Rainbow Brackets, Makefile Support)
 #   - Goland
-#   - JSON xml parser (iTunes)
-#   - Monosnap
-#   - Unsplash Wallpapers (iTunes)
+#   - JSON xml parser (AppStore)
+#   - Monosnap (AppStore)
+#   - Unsplash Wallpapers (AppStore)
+#   - Be Focused (AppStore)
 
 install_homebrew() {
-
-    echo -e "
+  echo -e "
 =======================================================================
                          Installing HomeBrew
 =======================================================================
 "
-
-# Installation to a manual folder - not recommended but optional
-#
-#  if [[ ! -d "~/.homebrew" ]]; then
-#    echo -------------------------- Installing Homebrew ---------------------------
-#
-#    mkdir ~/.homebrew && cd ~/.homebrew
-#    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
-#  fi
-
   if [[ ! -d "/usr/local/Homebrew" ]]; then
-    echo "  Installing..."
+    echo "==> Installing..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    echo "  Already installed."
+    echo "==> Already installed."
   fi
 }
 
 install_homebrew_taps() {
-  echo -e "\n  Tapping to homebrew/cask-versions...\n"
+  echo -e "Tapping to homebrew/cask-versions...\n"
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
-  echo "    Done."
+}
+
+keep_brew_up_to_date() {
+  echo -e "
+=======================================================================
+                      Upgrading Outdated Plugin
+======================================================================="
+  brew outdated
+  brew update
+  brew upgrade
 }
 
 install_packages() {
@@ -127,13 +123,12 @@ install_packages() {
     return
   fi
 
-    echo -e "
+  echo -e "
 =======================================================================
                       Installing HomeBrew Packages
 ======================================================================="
 
-  for pkg in "${PACKAGES[@]}"
-  do
+  for pkg in "${PACKAGES[@]}"; do
     echo -e "
 ===================
 Installing Package: ${pkg}
@@ -141,8 +136,6 @@ Installing Package: ${pkg}
 "
     brew install ${pkg}
   done
-
-  echo -e "\n    Done.\n"
 }
 
 # install_casks Function
@@ -156,13 +149,12 @@ install_casks() {
     return
   fi
 
-echo -e "
+  echo -e "
 =======================================================================
                       Installing HomeBrew Casks
 ======================================================================="
 
-  for cask in "${CASKS[@]}"
-  do
+  for cask in "${CASKS[@]}"; do
     echo -e "
 ================
 Installing Cask: ${cask}
@@ -170,27 +162,23 @@ Installing Cask: ${cask}
 "
     brew cask install ${cask}
   done
-
-  echo -e "\n    Done.\n"
 }
 
 list_all() {
-  echo -e "
-  ==> Installed Homebrew Packages:
-"
+    echo -e "
+Installed Homebrew Packages:
+----------------------------"
   brew leaves
 
-echo -e "
-  ==> Installed Homebrew Casks:
-"
+  echo -e "
+Installed Homebrew Casks:
+-------------------------"
   brew cask list
-
-  echo -e "\n    Done.\n"
 }
 
 install_custom() {
 
-echo -e "
+  echo -e "
 =======================================================================
                      Installing 3rd Party Content
 ======================================================================="
@@ -204,7 +192,7 @@ Installing: oh-my-zsh
   # --unattended: installer will not change the default shell or run zsh after the install
   sh /tmp/install.sh --unattended
 
-echo -e "
+  echo -e "
 ==================
 Installing Plugin: zsh-syntax-highlighting
 ==================
@@ -216,8 +204,6 @@ Installing Plugin: zsh-syntax-highlighting
   fi
 
   oh_my_zsh_setup_shell
-
-  echo -e "\n    Done.\n"
 }
 
 verify_pre_install() {
@@ -237,100 +223,106 @@ verify_pre_install() {
 # oh-my-zsh installation flow to allow zsh as the main shell.
 # -----------------------------------
 oh_my_zsh_setup_color() {
-	# Only use colors if connected to a terminal
-	if [ -t 1 ]; then
-		RED=$(printf '\033[31m')
-		GREEN=$(printf '\033[32m')
-		YELLOW=$(printf '\033[33m')
-		BLUE=$(printf '\033[34m')
-		BOLD=$(printf '\033[1m')
-		RESET=$(printf '\033[m')
-	else
-		RED=""
-		GREEN=""
-		YELLOW=""
-		BLUE=""
-		BOLD=""
-		RESET=""
-	fi
+  # Only use colors if connected to a terminal
+  if [ -t 1 ]; then
+    RED=$(printf '\033[31m')
+    GREEN=$(printf '\033[32m')
+    YELLOW=$(printf '\033[33m')
+    BLUE=$(printf '\033[34m')
+    BOLD=$(printf '\033[1m')
+    RESET=$(printf '\033[m')
+  else
+    RED=""
+    GREEN=""
+    YELLOW=""
+    BLUE=""
+    BOLD=""
+    RESET=""
+  fi
 }
 
 oh_my_zsh_command_exists() {
-	command -v "$@" >/dev/null 2>&1
+  command -v "$@" >/dev/null 2>&1
 }
 
 oh_my_zsh_error() {
-	echo ${RED}"Error: $@"${RESET} >&2
+  echo ${RED}"Error: $@"${RESET} >&2
 }
 
 oh_my_zsh_setup_shell() {
 
   oh_my_zsh_setup_color
 
-	# If this user's login shell is already "zsh", do not attempt to switch.
-	if [ "$(basename "$SHELL")" = "zsh" ]; then
-		return
-	fi
+  # If this user's login shell is already "zsh", do not attempt to switch.
+  if [ "$(basename "$SHELL")" = "zsh" ]; then
+    return
+  fi
 
-	# If this platform doesn't provide a "chsh" command, bail out.
-	if ! oh_my_zsh_command_exists chsh; then
-		cat <<-EOF
+  # If this platform doesn't provide a "chsh" command, bail out.
+  if ! oh_my_zsh_command_exists chsh; then
+    cat <<-EOF
 			I can't change your shell automatically because this system does not have chsh.
 			${BLUE}Please manually change your default shell to zsh${RESET}
 		EOF
-		return
-	fi
+    return
+  fi
 
-	echo "${BLUE}Time to change your default shell to zsh:${RESET}"
+  echo "${BLUE}Time to change your default shell to zsh:${RESET}"
 
-	# Prompt for user choice on changing the default login shell
-	printf "${YELLOW}Do you want to change your default shell to zsh? [Y/n]${RESET} "
-	read opt
-	case $opt in
-		y*|Y*|"") echo "Changing the shell..." ;;
-		n*|N*) echo "Shell change skipped."; return ;;
-		*) echo "Invalid choice. Shell change skipped."; return ;;
-	esac
+  # Prompt for user choice on changing the default login shell
+  printf "${YELLOW}Do you want to change your default shell to zsh? [Y/n]${RESET} "
+  read opt
+  case $opt in
+  y* | Y* | "") echo "Changing the shell..." ;;
+  n* | N*)
+    echo "Shell change skipped."
+    return
+    ;;
+  *)
+    echo "Invalid choice. Shell change skipped."
+    return
+    ;;
+  esac
 
-	# Test for the right location of the "shells" file
-	if [ -f /etc/shells ]; then
-		shells_file=/etc/shells
-	elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
-		shells_file=/usr/share/defaults/etc/shells
-	else
-		oh_my_zsh_error "could not find /etc/shells file. Change your default shell manually."
-		return
-	fi
+  # Test for the right location of the "shells" file
+  if [ -f /etc/shells ]; then
+    shells_file=/etc/shells
+  elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
+    shells_file=/usr/share/defaults/etc/shells
+  else
+    oh_my_zsh_error "could not find /etc/shells file. Change your default shell manually."
+    return
+  fi
 
-	# Get the path to the right zsh binary
-	# 1. Use the most preceding one based on $PATH, then check that it's in the shells file
-	# 2. If that fails, get a zsh path from the shells file, then check it actually exists
-	if ! zsh=$(which zsh) || ! grep -qx "$zsh" "$shells_file"; then
-		if ! zsh=$(grep '^/.*/zsh$' "$shells_file" | tail -1) || [ ! -f "$zsh" ]; then
-			oh_my_zsh_error "no zsh binary found or not present in '$shells_file'"
-			oh_my_zsh_error "change your default shell manually."
-			return
-		fi
-	fi
+  # Get the path to the right zsh binary
+  # 1. Use the most preceding one based on $PATH, then check that it's in the shells file
+  # 2. If that fails, get a zsh path from the shells file, then check it actually exists
+  if ! zsh=$(which zsh) || ! grep -qx "$zsh" "$shells_file"; then
+    if ! zsh=$(grep '^/.*/zsh$' "$shells_file" | tail -1) || [ ! -f "$zsh" ]; then
+      oh_my_zsh_error "no zsh binary found or not present in '$shells_file'"
+      oh_my_zsh_error "change your default shell manually."
+      return
+    fi
+  fi
 
-	# We're going to change the default shell, so back up the current one
-	if [ -n $SHELL ]; then
-		echo $SHELL > ~/.shell.pre-oh-my-zsh
-	else
-		grep "^$USER:" /etc/passwd | awk -F: '{print $7}' > ~/.shell.pre-oh-my-zsh
-	fi
+  # We're going to change the default shell, so back up the current one
+  if [ -n $SHELL ]; then
+    echo $SHELL >~/.shell.pre-oh-my-zsh
+  else
+    grep "^$USER:" /etc/passwd | awk -F: '{print $7}' >~/.shell.pre-oh-my-zsh
+  fi
 
-	# Actually change the default shell to zsh
-	if ! chsh -s "$zsh"; then
-		oh_my_zsh_error "chsh command unsuccessful. Change your default shell manually."
-	else
-		export SHELL="$zsh"
-		echo "${GREEN}Shell successfully changed to '$zsh'.${RESET}"
-	fi
+  # Actually change the default shell to zsh
+  if ! chsh -s "$zsh"; then
+    oh_my_zsh_error "chsh command unsuccessful. Change your default shell manually."
+  else
+    export SHELL="$zsh"
+    echo "${GREEN}Shell successfully changed to '$zsh'.${RESET}"
+  fi
 
-	echo
+  echo
 
-	exec zsh -l
+  exec zsh -l
 }
 
 main() {
@@ -338,6 +330,7 @@ main() {
   verify_pre_install
   install_homebrew
   install_homebrew_taps
+  keep_brew_up_to_date
   install_packages
   install_casks
   list_all

@@ -9,7 +9,7 @@ export UTILITIES=${HOME}/utilities
 
 export DOT_FILES=${CODEBASE}/github/dotfiles
 export DOCKER_FILES=${CODEBASE}/github/dockerfiles
-#export DOCKER_FILES=${CODEBASE}/github/anchor-dockerfiles
+export ANCHOR_FILES=${CODEBASE}/github/anchorfiles
 export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 
 ########################

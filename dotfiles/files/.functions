@@ -1,51 +1,5 @@
 #!/bin/bash
 
-##############################################
-#
-#                 SERVICES
-#
-##############################################
-#service() {
-#  cur=$(pwd)
-#  cd ${DOCKER_FILES}
-#
-#  case "$1" in
-#          list)
-#              make list
-#              ;;
-#
-#          start)
-#              make start DIR=$2
-#              ;;
-#
-#          build)
-#              make build DIR=$2
-#              ;;
-#
-#          push)
-#              make push DIR=$2
-#              ;;
-#
-#          stop)
-#              make stop DIR=$2
-#              ;;
-#
-#          clean)
-#              make clean DIR=$2
-#              ;;
-#
-#          help)
-#              make help
-#              ;;
-#
-#          *)
-#              echo $"Usage: $0 {build|push|clean|start|stop|list|help}"
-#              ;;
-#  esac
-#
-#  cd ${cur}
-#}
-
 reload_dot_files() {
   curr=${PWD}
   cd ${HOME}
@@ -57,74 +11,71 @@ reload_dot_files() {
 
 # Order is important
 declare -a DOT_FILES_TO_LOAD=(".exports"
-                              ".path"
-                              ".aliases"
-                              ".functions")
+  ".path"
+  ".aliases"
+  ".functions")
 
 _reload_dot_files_inner() {
   for file in "${DOT_FILES_TO_LOAD[@]}"; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
-#      echo "${HOME}/${file}"
+      #      echo "${HOME}/${file}"
       source ${HOME}/${file}
     fi
   done
-
-#  echo "Successfully loaded the following .dotfiles: ${DOT_FILES_TO_LOAD}"
-
+  #  echo "Successfully loaded the following .dotfiles: ${DOT_FILES_TO_LOAD}"
   unset DOT_FILES_TO_LOAD
-
   _reload_transient_files
 }
 
 _reload_transient_files() {
   for file in $(find ${DOT_FILES}/dotfiles/transient -name ".*"); do
     source ${file}
-	done;
+  done
 }
 
 print_brew_content() {
   echo -e "
-==> Homebrew packages:"
-  ls -1 ${HOMEBREW_CELLAR}
+Installed Homebrew Packages:
+----------------------------"
+  brew leaves
 
   echo -e "
-==> Homebrew casks:"
-  ls -1 ${HOMEBREW_CASKROOM}
-
-  echo "\n"
+Installed Homebrew Casks:
+-------------------------"
+  brew cask list
 }
 
 ##############################################
-#
 #                  SYSTEM
-#
 ##############################################
 # Create a new directory and enter it
 mkd() {
-	mkdir -p "$@"
-	cd "$@" || exit
+  mkdir -p "$@"
+  cd "$@" || exit
 }
 
 # Determine size of a file or total size of a directory
 fs() {
-	if du -b /dev/null > /dev/null 2>&1; then
-		local arg=-sbh
-	else
-		local arg=-sh
-	fi
-	# shellcheck disable=SC2199
-	if [[ -n "$@" ]]; then
-		du $arg -- "$@"
-	else
-		du $arg -- .[^.]* *
-	fi
+  if du -b /dev/null >/dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+  # shellcheck disable=SC2199
+  if [[ -n "$@" ]]; then
+    du $arg -- "$@"
+  else
+    du $arg -- .[^.]* *
+  fi
 }
 
+# bkr ./some_script.sh # some_script.sh is now running in the background
+bkr() {
+  (nohup "$@" &>/dev/null &)
+}
 
 ##############################################
-#
 #                   IDEs
-#
 ##############################################
 kill_intellij() {
   local pid=$(ps -ef | grep -v grep | grep idea | awk '{print $2}')
@@ -140,9 +91,7 @@ kill_intellij() {
 }
 
 ##############################################
-#
 #                TERRAFORM
-#
 ##############################################
 load_terraform_provider_spotinst() {
   local providerFilename="terraform-provider-spotinst_v0.12.0"
@@ -181,11 +130,27 @@ test_terraform_provider_spotinst() {
 
   make testacc spotinst ${test_args}
 
-    echo -e "
+  echo -e "
 Executed acceptance tests on latest spotinst-terraform-provider:
   Build Source..: ${providerBuildPath}
   Test Name.....: ${test_name}
 "
 
   cd ${cur}
+}
+
+##############################################
+#                   DOCKER
+##############################################
+docker_remove_dangling_intermediate_images() {
+  #  local danglingImages=$(docker images | grep "<none>" | awk {'print $3'})
+  local danglingImages=$(docker images -f "dangling=true" -q)
+  if [[ ! -z "${danglingImages}" ]]; then
+    echo "Removing dangling intermediate <none> images..."
+    docker rmi -f ${danglingImages}
+  fi
+}
+
+docker_remove_stopped_containers() {
+  docker container prune -f
 }

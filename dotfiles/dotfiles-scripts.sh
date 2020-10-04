@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Title        dotfiles-scripts.sh
+# Description  Create/remove dotfiles symlinks in/from $HOME folder
+# Author       Zachi Nachshon <zachi.nachshon@gmail.com>
+#==============================================================================
 print_banner() {
   echo -e "
 ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
@@ -11,15 +15,32 @@ print_banner() {
 "
 }
 
-print_error() {
-  echo "Usage: .dotfiles-scripts --install / .dotfiles-scripts --uninstall"
+print_usage() {
+  echo -e "Manage dotfiles symlinks in \$HOME folder
+
+Usage:
+  ./dotfiles-scripts.sh [flags]
+
+Flags:
+  --install     create symlinks for dotfiles in \$HOME folder
+  --uninstall   remove symlinks from \$HOME folder
+
+Use \"./dotfiles-scripts.sh help\" for additional information."
   exit 1
 }
 
 install_dotfiles() {
-  echo -e "\n--------------------- Installing .dotfiles ---------------------"
   local output=""
-  local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
+
+  local DOT_FILES_TO_INSTALL=$(find $(PWD)/dotfiles/files \
+    -name ".*" \
+    -not -name ".gitignore" \
+    -not -name ".travis.yml" \
+    -not -name ".git" \
+    -not -name ".*.swp" \
+    -not -name ".gnupg" \
+    -not -name ".idea")
+
   for file in ${DOT_FILES_TO_INSTALL}; do
     f=$(basename ${file})
     # Install .zsh files only for zsh shell and vice versa for .bash files and bash shell
@@ -32,16 +53,22 @@ install_dotfiles() {
     fi
 
     output+="\n  ${f} --> ${file}"
-  done;
+  done
 
-  echo -e "\nSuccessfully installed the following .dotfiles:\n" ${output}
-  echo -e "\n    Done.\n"
+  echo -e "${output}\n"
 }
 
 uninstall_dotfiles() {
-  echo -e "\n--------------------- Uninstalling .dotfiles ---------------------"
   local output=""
-  local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -not -name ".idea")
+
+  local DOT_FILES_TO_UNINSTALL=$(find $(PWD)/dotfiles/files -name ".*" \
+    -not -name ".gitignore" \
+    -not -name ".travis.yml" \
+    -not -name ".git" \
+    -not -name ".*.swp" \
+    -not -name ".gnupg" \
+    -not -name ".idea")
+
   for file in ${DOT_FILES_TO_UNINSTALL}; do
     f=$(basename ${file})
     # Uninstall .zsh files only for zsh shell and vice versa for .bash files and bash shell
@@ -50,18 +77,17 @@ uninstall_dotfiles() {
     elif [[ ${f} == *".bash"* && $(echo ${SHELL}) != *"bash"* ]]; then
       continue
     else
-      unlink ${HOME}/${f}
+      unlink ${HOME}/${f} 2>/dev/null
     fi
 
-    output+="\n  ${f}"
-  done;
+    output+="\n  ${f} --> removed."
+  done
 
-  echo -e "\nSuccessfully uninstalled the following .dotfiles:\n" ${output}
-  echo -e "\n    Done.\n"
+  echo -e "${output}\n"
 }
 
 verify_pre_install() {
-  read -p "Do you want to install dotfiles symlinks for [${SHELL}]? (y/n): " input
+  read -p "Do you want to set dotfiles symlinks in [${HOME}]? (y/n): " input
   if [[ ${input} != "y" ]]; then
     echo -e "\n    Nothing has changed.\n"
     exit 0
@@ -69,7 +95,7 @@ verify_pre_install() {
 }
 
 verify_pre_uninstall() {
-  read -p "Do you want to uninstall all dotfiles symlinks? (y/n): " input
+  read -p "Do you want to remove dotfiles symlinks from [${HOME}]? (y/n): " input
   if [[ ${input} != "y" ]]; then
     echo -e "\n    Nothing has changed.\n"
     exit 0
@@ -78,20 +104,24 @@ verify_pre_uninstall() {
 
 main() {
   if [[ $# -eq 0 ]]; then
-    print_error
+    print_usage
   fi
 
   action=$1
 
-  if [[ ${action} = "--install" ]]; then
+
+  // TODO: Install in a dedicated $HOME/.dotfiles folder
+
+  if [[ ${action} == "--install" ]]; then
     print_banner
     verify_pre_install
     install_dotfiles
-  elif [[ ${action} = "--uninstall" ]]; then
+  elif [[ ${action} == "--uninstall" ]]; then
+    print_banner
     verify_pre_uninstall
     uninstall_dotfiles
   else
-    print_error
+    print_usage
   fi
 }
 
