@@ -43,13 +43,17 @@ If a managed content should be added, add it to the relevant file:
 If files in `<repo-root>/dotfiles/transient` directory exists, they will be sourced along but won't get symlinked anywhere.<br/>
 You can use this to export ENV vars with sensitive information such as secrets in an opened shell. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
 
+| :warning: Warning |
+| :--------------------------------------- |
+| It is not recommended to commit the `.secret` transient file as it may contain sensitive information |
+
     .
     ├── ...
     ├── dotfiles               
     │   └── custom  # dotfiles to symlink in specific machines e.g. work related / personal etc..
     │       ├── .my-company  
     │       └── ...
-    │   └── home  # files that should symlinked in HOME folder
+    │   └── home  # files that should get symlinked in HOME folder
     │       ├── .gitignore_global       
     │       └── ...
     │   └── managed  # dotfiles to symlink across all machines
@@ -63,13 +67,9 @@ You can use this to export ENV vars with sensitive information such as secrets i
     │   └── .dotfiles.sh  # dotfiles install/uninstall management script 
     └── ...
 
-| :warning: Warning |
-| :--------------------------------------- |
-| It is not recommended to commit the `.secret` transient file as it may contain sensitive information |
-
 ## Quick Start Guide
 
-#### `dotfiles install`
+####  `make dotfiles` (install)
 
 <details><summary>Show</summary>
 
@@ -77,7 +77,7 @@ You can use this to export ENV vars with sensitive information such as secrets i
 </details>
 <br>
 
-#### `dotfiles uninstall`
+#### `make dotfiles` (uninstall)
 
 <details><summary>Show</summary>
 
@@ -85,7 +85,7 @@ You can use this to export ENV vars with sensitive information such as secrets i
 </details>
 <br>
 
-#### `brew packages/casks`
+#### `make brew` (install packages/casks)
 
 <details><summary>Show</summary>
 
@@ -93,11 +93,10 @@ You can use this to export ENV vars with sensitive information such as secrets i
 </details>
 <br>
 
-#### `mac-os overrides`
+#### `make mac` (mac-os overrides)
 
 <details><summary>Show</summary>
 
 ![mac-os](docs/assets/gifs/mac-os.gif)
 </details>
 <br>
-
