@@ -1,0 +1,22 @@
+# IDEA internal
+*.iml
+.idea
+.project
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Java/Scala
+*.class
+*.log
+
+# Node
+logs
+node_modules
+npm-debug.log

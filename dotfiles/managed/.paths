@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# -=-= Anchor =-=-
+export ANCHOR_FILES=${CODEBASE}/github/anchorfiles
+
+# -=-= Kubernetes =-=-
+export KUBECONFIG=$HOME/.kube/k3s/config
+
+# -=-= Homebrew =-=-
+export HOMEBREW_CELLAR=/usr/local/Cellar
+export HOMEBREW_CASKROOM=/usr/local/Caskroom
+
+# -=-= Java =-=-
+
+# All Java versions home folder are being store in:
+#   - /Library/Java/JavaVirtualMachines/JDK-VERSION/Contents/Home
+#
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+#export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
+#export JAVA_10_HOME=$(/usr/libexec/java_home -v10)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+#export JAVA_12_HOME=$(/usr/libexec/java_home -v12)
+export JAVA_HOME=${JAVA_11_HOME} # Use Java 11 by default
+
+# -=-= Go =-=-
+export GOROOT_1_13=${ENVIRONMENT}/go1.13
+export GOROOT_1_14_2=${ENVIRONMENT}/go1.14.2
+export GOROOT=${GOROOT_1_14_2} # Use Go 1.14.2 by default
+export GOPATH=${HOME}/.go
+#export GO111MODULE="on" # on/off/auto
+
+# -=-= Terraform =-=-
+export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
+export TF_LOG=DEBUG
+
+# -=-= Path =-=-
+export PATH=${PATH}:usr/bin:/usr/local/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin
+
+# Do not unset these ENV vars since there are aliases that rely on them

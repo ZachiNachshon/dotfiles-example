@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# -=-= Custom =-=-
+alias github="cd ${CODEBASE}/github"
+alias dl="cd ~/Downloads"
+alias gop="cd ${GOPATH}/src/github.com"
+alias dc="docker-compose"
+
+# -=-= Applications =-=-
+alias typora="open -a typora"
+# Exist only for Java 1.8 - need to use a full path
+alias visualvm="${JAVA_8_HOME}/bin/jvisualvm &"
+
+# -=-= ZSH =-=-
+alias zshconfig="vim ~/.zshrc"
+
+# -=-= Java =-=-
+alias java8='export JAVA_HOME=${JAVA_8_HOME}'
+alias java9='export JAVA_HOME=${JAVA_9_HOME}'
+alias java10='export JAVA_HOME=${JAVA_10_HOME}'
+alias java11='export JAVA_HOME=${JAVA_11_HOME}'
+alias java12='export JAVA_HOME=${JAVA_12_HOME}'
+
+# -=-= GO =-=-
+alias go1.13='export GOROOT=${GOROOT_1_13}'
+alias go1.14.3='export GOROOT=${GOROOT_1_14_3}'
+
+# -=-= IntelliJ =-=-
+INTELLIJ_VERSION_FOLDER=IntelliJIdea2020.1
+alias ij-cache="cd ~/Library/Caches/JetBrains/${INTELLIJ_VERSION_FOLDER}"
+alias ij-pref="cd ~/Library/Preferences/JetBrains/${INTELLIJ_VERSION_FOLDER}"
+alias ij-plug="cd ~/Library/Application\ Support/JetBrains/${INTELLIJ_VERSION_FOLDER}"
+alias ij-logs="cd ~/Library/Logs/JetBrains/${INTELLIJ_VERSION_FOLDER}"

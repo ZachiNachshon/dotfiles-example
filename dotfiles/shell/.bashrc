@@ -3,10 +3,7 @@
 ###########################################################################
 #                             Load .dotfiles
 ###########################################################################
-curr=${PWD}
-cd ${HOME}
-source ./.functions
-_reload_dot_files_inner
-cd ${curr}
-unset curr
+DOTFILES_REPO="$(dirname "$(readlink "${HOME}/.dotfiles/.config")")"
+source ${DOTFILES_REPO}/config.sh
+reload_dot_files
 ###########################################################################

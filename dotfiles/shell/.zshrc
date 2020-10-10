@@ -1,22 +1,19 @@
 #!/bin/bash
 
-DEFAULT_USER="zachi.nachshon"
-
 ###########################################################################
 #                             Load .dotfiles
 ###########################################################################
-curr=${PWD}
-cd ${HOME}
-source ./.functions
-_reload_dot_files_inner
-cd ${curr}
-unset curr
+DOTFILES_REPO="$(dirname "$(readlink "${HOME}/.dotfiles/.config")")"
+source ${DOTFILES_REPO}/config.sh
+reload_dot_files
 ###########################################################################
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
+# This line is mandatory to prevent agnoster theme to set prompt as <username@machine-name>
+DEFAULT_USER="$(whoami)"
 ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -72,9 +69,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red') # To have commands starting with `rm -rf` in red:
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/${DEFAULT_USER}/.oh-my-zsh
-
-source $ZSH/oh-my-zsh.sh
+export ZSH=${HOME}/.oh-my-zsh
+source ${ZSH}/oh-my-zsh.sh
 
 # User configuration
 

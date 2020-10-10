@@ -1,23 +1,19 @@
 default: help
 
 .PHONY: dotfiles
-dotfiles: ## Create symlinks from this repo to $HOME directory
-	-@$(CURDIR)/dotfiles/dotfiles-scripts.sh "--install"
-
-.PHONY: dotfiles-uninstall
-dotfiles-uninstall: ## Remove all symlinks from $HOME directory
-	-@$(CURDIR)/dotfiles/dotfiles-scripts.sh "--uninstall"
+dotfiles: ## Create/remove symlinks in/from folder [$HOME/.dotfiles]
+	-@$(CURDIR)/dotfiles/dotfiles.sh
 
 .PHONY: brew
 brew: ## Installs commonly used Homebrew packages and casks
-	-@$(CURDIR)/brew/brew-install.sh
+	-@$(CURDIR)/brew/brew.sh
 
 .PHONY: mac
 mac: ## Install macOS KeyBindings, setup finder customizations and keyboard preferences
-	-@$(CURDIR)/mac/.mac-install
+	-@$(CURDIR)/mac/mac-os.sh
 
 .PHONY: all
-all: install brew mac ## Execute `install`, `brew` and `mac` in this order
+all: mac dotfiles brew  ## Execute `mac`, `dotfiles` and `brew` in this order
 
 .PHONY: help
 help:

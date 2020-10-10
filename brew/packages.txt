@@ -1,0 +1,13 @@
+zsh
+zsh-syntax-highlighting
+fzf
+watch
+git
+vegeta
+wget
+telnet
+kubernetes-cli
+kubernetes-helm
+python
+derailed/k9s/k9s
+graphviz
