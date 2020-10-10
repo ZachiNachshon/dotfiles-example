@@ -45,7 +45,7 @@ You can use this to export ENV vars with sensitive information such as secrets i
 
 | :warning: Warning |
 | :--------------------------------------- |
-| It is not recommended to commit the `.secret` transient file as it may contain sensitive information |
+| It is not recommended to commit the `.secrets` transient file as it may contain sensitive information |
 
     .
     ├── ...

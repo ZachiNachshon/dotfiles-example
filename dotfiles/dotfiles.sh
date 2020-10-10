@@ -139,7 +139,7 @@ _unlink_shells_in_home_dir() {
     fi
   done
 
-  echo -e "\nShell:${output}\n"
+  echo -e "\nShell:${output}"
 }
 
 _unlink_managed_files_in_dotfiles_dir() {
@@ -159,7 +159,7 @@ _unlink_managed_files_in_dotfiles_dir() {
     output+="\n  ${DOTFILES_HOME_DIR}/managed/${f} --> removed."
   done
 
-  echo -e "\nManaged:${output}\n"
+  echo -e "\nManaged:${output}"
 }
 
 _unlink_custom_files_in_dotfiles_dir() {
