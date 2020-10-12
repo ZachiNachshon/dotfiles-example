@@ -8,6 +8,6 @@ wget
 telnet
 kubernetes-cli
 kubernetes-helm
-python
+python3
 derailed/k9s/k9s
 graphviz
