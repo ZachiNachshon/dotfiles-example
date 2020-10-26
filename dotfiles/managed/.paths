@@ -34,6 +34,6 @@ export TERRAFORM_FILES=${CODEBASE}/github/terraformfiles
 export TF_LOG=DEBUG
 
 # -=-= Path =-=-
-export PATH=/usr/bin:/usr/local/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin:${PATH}
+export PATH=/usr/local/opt/ruby/bin:/usr/bin:/usr/local/bin:${JAVA_HOME}/bin:${GOROOT}/bin:${GOPATH}/bin:${PATH}
 
 # Do not unset these ENV vars since there are aliases that rely on them
