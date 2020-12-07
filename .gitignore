@@ -20,5 +20,5 @@ logs/
 .*.sw[a-z]
 *.un~
 
-.secrets
+dotfiles/transient/
 .wix
