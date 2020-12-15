@@ -114,7 +114,7 @@ install_casks() {
 Installing Cask: ${cask}
 ================
 "
-    brew cask install ${cask}
+    brew install --cask ${cask}
 
   done < ${casks_filename}
 }
