@@ -20,6 +20,6 @@ logs/
 .*.sw[a-z]
 *.un~
 
-dotfiles/transient/
+.secrets
 .wix
 .spotinst
