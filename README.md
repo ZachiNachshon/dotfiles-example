@@ -1,10 +1,7 @@
-# dotfiles
-A curated list of `dotfiles` I use for my local development environment.
-
-![dotfiles-logo-resized](docs/assets/logos/dotfiles-logo-resized.png)
+<h3 align="center" id="dotfiles-logo-resized"><img src="docs/assets/logos/dotfiles-logo-resized.png"></h3>
 
 ## What is it?
-This repository intended to consolidate and manage commonly used .dotfiles into a single place backed by a git repository.<br/>
+A curated list of `.dotfiles` I use for my local development environment. This repository intended to consolidate and manage commonly used `.dotfiles` into a single place backed by a git repository.<br/>
 It creates symlinks from [dotfiles directory](dotfiles) in the following manner:
 
 - `~/.dotfiles/.config` - directories paths of *dotfiles repo* and *.dotfiles symlinks* + reload symlinks function
@@ -29,11 +26,11 @@ List of available `make` commands:
 
 <u>**Custom**</u>
 
-Just add any custom dotfile to `<repo-root>/dotfiles/custom/*.*` and it'll be sources on every new shell.
+Just add any custom dotfile to `<repo-root>/dotfiles/custom/*.*` and it'll be sourced on every new shell.
 
 **<u>Managed</u>**
 
-If a managed content should be added across all machines using this dotfiles repo, add it to a relevant file:
+For a managed content to be added across all machines using this dotfiles repo, add it to the relevant file:
 
 - `.aliases`
 - `.functions`
@@ -45,7 +42,7 @@ You can use this to export ENV vars with sensitive information such as secrets t
 
 | :warning: Warning |
 | :--------------------------------------- |
-| It is not recommended to commit the `.secrets` transient file as it may contain sensitive information |
+| It is not recommended to commit the `.secrets` transient file as it may contain sensitive information. |
 
     .
     ├── ...
