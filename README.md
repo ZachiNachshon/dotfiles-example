@@ -1,6 +1,10 @@
-<h3 align="center" id="dotfiles-logo-resized"><img src="docs/assets/logos/dotfiles-logo-resized.png"></h3>
+<h3 align="center" id="dotfiles-logo">
+  <img src="docs/assets/logos/dotfiles-logo.png" width=500 align="middle"/>
+</h3>
+
 
 ## What is it?
+
 A curated list of `.dotfiles` I use for my local development environment. This repository intended to consolidate and manage commonly used `.dotfiles` into a single place backed by a git repository.<br/>
 It creates symlinks from [dotfiles directory](dotfiles) in the following manner:
 
@@ -12,6 +16,8 @@ Additionally, this repository contains:
 - [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew) that I use
 - macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
 
+<br>
+
 ## Getting Started
 
 List of available `make` commands:
@@ -21,6 +27,8 @@ List of available `make` commands:
 1. `mac`  - (*optional*) macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
 1. `all` - (*optional*) execute `mac`, `dotfiles` and `brew` in this order
 1. `help` - (*optional*) get available actions
+
+<br>
 
 ## Customization
 
@@ -37,6 +45,7 @@ For a managed content to be added across all machines using this dotfiles repo, 
 - `.paths`
 
 ### Transient Files
+
 If files in `<repo-root>/dotfiles/transient` directory exists, they will be sourced along but won't get symlinked anywhere.<br/>
 You can use this to export ENV vars with sensitive information such as secrets to become available an newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
 
@@ -64,32 +73,36 @@ You can use this to export ENV vars with sensitive information such as secrets t
     │   └── .dotfiles.sh  # dotfiles install/uninstall management script 
     └── ...
 
+<br>
+
 ## Quick Start Guide
 
-####  `make dotfiles` (install)
+####  `make dotfiles` (install dotfiles)
 
 <details><summary>Show</summary>
 <img src="docs/assets/gifs/dotfiles-install.gif" alt="dotfiles-install" />
 </details>
 <br>
 
-#### `make dotfiles` (uninstall)
+#### `make dotfiles` (uninstall dotfiles)
 
 <details><summary>Show</summary>
 <img src="docs/assets/gifs/dotfiles-uninstall.gif" alt="dotfiles-uninstall" />
 </details>
 <br>
 
-#### `make brew` (install packages/casks)
+#### `make brew` (install Homebrew packages/casks)
 
 <details><summary>Show</summary>
 <img src="docs/assets/gifs/brew.gif" alt="brew" />
 </details>
 <br>
 
-#### `make mac` (mac-os overrides)
+#### `make mac` (override macOS with custom setting)
 
 <details><summary>Show</summary>
 <img src="docs/assets/gifs/mac-install.gif" alt="mac" />
 </details>
 <br>
+
+<sup><b>Credits: </b><a href=https://github.com/jglovier/dotfiles-logo>Logo</a> created by <a href=https://github.com/jglovier>Joel Glovier</a></sup>
