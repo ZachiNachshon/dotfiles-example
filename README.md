@@ -1,5 +1,5 @@
 <h3 align="center" id="dotfiles-logo">
-  <img src="docs/assets/logos/dotfiles-logo.png" width=500 align="middle"/>
+  <img src="docs/assets/logos/dotfiles-logo-orig.png" width=500 align="middle"/>
 </h3>
 
 
