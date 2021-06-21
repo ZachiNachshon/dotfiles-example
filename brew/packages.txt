@@ -11,3 +11,5 @@ kubernetes-helm
 python3
 derailed/k9s/k9s
 graphviz
+shellcheck
+jq
