@@ -42,7 +42,7 @@ For a managed content to be added across all machines using this dotfiles repo, 
 
 - `.aliases`
 - `.functions`
-- `.paths`
+- `.exports`
 
 ### Transient Files
 

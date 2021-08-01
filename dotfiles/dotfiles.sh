@@ -105,7 +105,7 @@ uninstall_dotfiles() {
   _unlink_managed_files_in_dotfiles_dir
   _unlink_custom_files_in_dotfiles_dir
 
-  if [[ ${DOTFILES_HOME_DIR} != ${HOME} ]]; then
+  if [[ ${DOTFILES_HOME_DIR} != ${HOME} && -d ${DOTFILES_HOME_DIR} && ${DOTFILES_HOME_DIR} == *"dotfiles"* ]]; then
     rm -r ${DOTFILES_HOME_DIR}
     output+="\nCleanup:\n  ${DOTFILES_HOME_DIR} --> removed."
   fi
