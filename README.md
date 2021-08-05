@@ -47,7 +47,7 @@ For a managed content to be added across all machines using this dotfiles repo, 
 ### Transient Files
 
 If files in `<repo-root>/dotfiles/transient` directory exists, they will be sourced along but won't get symlinked anywhere.<br/>
-You can use this to export ENV vars with sensitive information such as secrets to become available an newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
+You can use this to export ENV vars with sensitive information such as secrets to become available on any newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
 
 | :warning: Warning |
 | :--------------------------------------- |
