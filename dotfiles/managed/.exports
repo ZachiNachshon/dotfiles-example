@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# -=-= Anchor =-=-
-export ANCHOR_FILES=${CODEBASE}/github/anchorfiles
-
 # -=-= Kubernetes =-=-
 export KUBECONFIG=$HOME/.kube/k3s/config
 

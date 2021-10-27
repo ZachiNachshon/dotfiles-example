@@ -26,7 +26,7 @@ alias go1.13='export GOROOT=${GOROOT_1_13}'
 alias go1.14.3='export GOROOT=${GOROOT_1_14_3}'
 
 # -=-= IntelliJ =-=-
-INTELLIJ_VERSION_FOLDER=IntelliJIdea2020.1
+INTELLIJ_VERSION_FOLDER=IntelliJIdea2021.1
 alias ij-cache="cd ~/Library/Caches/JetBrains/${INTELLIJ_VERSION_FOLDER}"
 alias ij-pref="cd ~/Library/Preferences/JetBrains/${INTELLIJ_VERSION_FOLDER}"
 alias ij-plug="cd ~/Library/Application\ Support/JetBrains/${INTELLIJ_VERSION_FOLDER}"
