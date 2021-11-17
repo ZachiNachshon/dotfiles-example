@@ -13,7 +13,7 @@ mac: ## Install macOS KeyBindings, setup finder customizations and keyboard pref
 	-@$(CURDIR)/mac/mac-os.sh
 
 .PHONY: all
-all: mac dotfiles brew  ## Execute `mac`, `dotfiles` and `brew` in this order
+all: mac brew dotfiles  ## Execute `mac`, `brew` and `dotfiles` in this order
 
 .PHONY: help
 help:

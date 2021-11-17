@@ -1,17 +1,23 @@
 #!/bin/bash
 
+
 # Description  ENV var specifying dotfiles destination directory
 # ==============================================================
 export DOTFILES_HOME_DIR=${HOME}/.dotfiles
 
-# Description  ENV var specifying codebase root folder
-# ====================================================
-export CODEBASE=${HOME}/codebase
 
 # Description  ENV var dotfiles repository path (+alias)
 # ======================================================
-export DOTFILES_REPO=${CODEBASE}/github/dotfiles
+SCRIPT=$(greadlink -f "$0")
+
+export DOTFILES_REPO=$(dirname "$SCRIPT")
 alias dotfiles=${DOTFILES_REPO}
+
+# Description  ENV var specifying codebase root folder
+# ====================================================
+SCRIPT=$(greadlink -f "$0")
+
+export CODEBASE=$(dirname $DOTFILES_REPO)
 
 # Description  ENV var specifying environmental settings e.g. Go, JDK etc..
 # =========================================================================

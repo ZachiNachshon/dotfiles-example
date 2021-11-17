@@ -1,10 +1,11 @@
+wget
+coreutils
 zsh
 zsh-syntax-highlighting
 fzf
 watch
 git
 vegeta
-wget
 telnet
 kubernetes-cli
 kubernetes-helm
