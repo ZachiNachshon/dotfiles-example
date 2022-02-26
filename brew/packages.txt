@@ -13,3 +13,5 @@ derailed/k9s/k9s
 graphviz
 shellcheck
 jq
+nmap
+arp-scan

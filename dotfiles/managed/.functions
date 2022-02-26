@@ -49,7 +49,7 @@ kill_intellij() {
 
   if [[ ! -z ${pid} ]]; then
     echo "Killing idea process ${pid}..."
-    kill -9 $(ps -ef | grep -v grep | grep idea | awk '{print $2}')
+    kill -9 "${pid}"
   else
     echo "Idea is not running."
   fi
@@ -60,12 +60,21 @@ kill_intellij() {
 ##############################################
 #                  DOCKER
 ##############################################
-docker_remove_dangling_intermediate_images() {
-  #  local danglingImages=$(docker images | grep "<none>" | awk {'print $3'})
-  local danglingImages=$(docker images -f "dangling=true" -q)
-  if [[ ! -z "${danglingImages}" ]]; then
-    echo "Removing dangling intermediate <none> images..."
-    docker rmi -f ${danglingImages}
+docker_remove_dangling_intermediate_images () {
+	local dangling_images="$(docker images -f "dangling=true" -q)"
+	if [[ ! -z "${dangling_images}" ]]; then
+		echo "Removing dangling intermediate images..."
+		local images_arr=(`echo $dangling_images | tr '\n' ' '`)
+	  for (( i=0; i < ${#images_arr[@]}; i++ ))
+    do
+      local image_to_remove=${images_arr[i]}
+      if [[ ! -z ${image_to_remove} ]]; then
+        echo "Removing image. id: ${image_to_remove}"
+        docker rmi -f "${image_to_remove}"
+      fi
+    done
+	else
+    log_info "No dangling images found"
   fi
 }
 
