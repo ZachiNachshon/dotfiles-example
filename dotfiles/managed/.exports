@@ -23,7 +23,8 @@ export JAVA_HOME=${JAVA_11_HOME} # Use Java 11 by default
 export GOROOT_1_13=${ENVIRONMENT}/go1.13
 export GOROOT_1_14_2=${ENVIRONMENT}/go1.14.2
 export GOROOT_1_16_6=${ENVIRONMENT}/go1.16.6
-export GOROOT=${GOROOT_1_16_6} # Use Go 1.16.6 by default
+export GOROOT_1_18_2=${ENVIRONMENT}/go1.18.2
+export GOROOT=${GOROOT_1_18_2} # Use Go 1.18.2 by default
 export GOPATH=${HOME}/.go
 #export GO111MODULE="on" # on/off/auto
 

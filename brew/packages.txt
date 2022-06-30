@@ -15,3 +15,6 @@ shellcheck
 jq
 nmap
 arp-scan
+grpcurl
+shfmt
+starship

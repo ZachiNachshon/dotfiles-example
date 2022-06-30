@@ -1,0 +1,6 @@
+# brew tap dimentium/autoraise
+# brew install autoraise
+# brew services start autoraise
+# https://github.com/Dimentium/homebrew-autoraise
+# https://github.com/sbmpost/AutoRaise
+autoraise

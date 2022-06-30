@@ -63,6 +63,7 @@ install_homebrew_taps() {
   # cask-versions enable us to search supported versions by providing a cask name:
   #   - brew search <cask name>
   brew tap homebrew/cask-versions
+  brew tap homebrew/cask-fonts
 }
 
 keep_brew_up_to_date() {

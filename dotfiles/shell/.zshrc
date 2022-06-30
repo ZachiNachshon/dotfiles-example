@@ -14,7 +14,8 @@ reload_dot_files
 
 # This line is mandatory to prevent agnoster theme to set prompt as <username@machine-name>
 DEFAULT_USER="$(whoami)"
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -98,7 +99,15 @@ source ${ZSH}/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
+# 
+# Load Starship configuration
+# 
+export STARSHIP_CONFIG=${DOTFILES_REPO}/dotfiles/managed/starship.toml
+eval "$(starship init zsh)"
+
 # Used for anchor auto completion - load /usr/local/share/zsh/site-functions/_anchor
 autoload -U compinit && compinit
 
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+source "$HOME/.bazelenv"

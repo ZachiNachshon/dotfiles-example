@@ -10,12 +10,15 @@ visual-studio-code
 iterm2
 flux
 muzzle
-postman
 spectacle
 tunnelbear
-zoomus
+zoom
 docker
 macpass
 typora
 licecap
 http-toolkit
+fork
+hyper
+font-hack-nerd-font
+inkscape

@@ -1,0 +1,4 @@
+# https://github.com/Homebrew/homebrew-cask-drivers
+# brew tap homebrew/cask-drivers
+# brew install --cask qmk-toolbox
+qmk-toolbox
