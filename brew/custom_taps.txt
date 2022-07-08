@@ -1,27 +1,5 @@
 # ===================================== IMPORTANT =========================================
 # AN EMPTY LINE AT THE END OF THE FILE IS MANDATORY - FOR THE LAST ITEM TO BE READ PROPERLY
 # =========================================================================================
-alfred
-google-chrome
-spotify
-tableplus
-slack
-telegram
-whatsapp
-sublime-text
-visual-studio-code
-iterm2
-flux
-muzzle
-spectacle
-tunnelbear
-zoom
-docker
-macpass
-typora
-licecap
-http-toolkit
-fork
-hyper
-font-hack-nerd-font
-inkscape
+ZachiNachshon/tap
+dimentium/autoraise

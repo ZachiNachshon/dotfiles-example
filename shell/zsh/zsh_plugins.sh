@@ -1,5 +1,9 @@
 #!/bin/bash
 
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/logger.sh"
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/prompter.sh"
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/io.sh"
+
 # oh-my-zsh overrides
 # -----------------------------------
 # Override the setup_shell function with its dependant functions
@@ -111,37 +115,62 @@ _oh_my_zsh_setup_shell() {
   exec zsh -l
 }
 
-oh_my_zsh_setup_install() {
-
-  if [[ "$(basename "$SHELL")" != "zsh" ]]; then
-    echo "[WARN] Skipping oh-my-zsh installation, shell is not zsh."
-    return
-  fi
-
-  echo -e "
-=======================================================================
-                    Installing oh-my-zsh & plugins
-======================================================================="
+_oh_my_zsh_install() {
+  log_info "Installing oh-my-zsh and ZSH plugins..."
 
   echo -e "
 ===========
 Installing: oh-my-zsh
 ===========
 "
-  wget -O /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-  # --unattended: installer will not change the default shell or run zsh after the install
-  sh /tmp/install.sh --unattended
 
+  if is_debug; then
+    echo """
+    wget -O /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    sh /tmp/install.sh --unattended
+    """
+  fi
+  if ! is_dry_run; then
+    wget -O /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    # --unattended: installer will not change the default shell or run zsh after the install
+    sh /tmp/install.sh --unattended
+  fi
+ 
   echo -e "
 ==================
 Installing Plugin: zsh-syntax-highlighting
 ==================
 "
-  if [[ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]]; then
+  if is_debug; then
+    echo """
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-  else
-    echo "  Already installed."
+    """
+  fi
+  if ! is_dry_run; then
+    if ! is_directory_exist "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"; then
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    else
+      log_info "Plugins aleady installed. name: zsh-syntax-highlighting"
+    fi
   fi
 
   _oh_my_zsh_setup_shell
+}
+
+oh_my_zsh_setup() {
+
+  if [[ "$(basename "$SHELL")" != "zsh" ]]; then
+    log_warning "Skipping oh-my-zsh installation, shell is not zsh."
+    return
+  fi
+
+  if ! is_directory_exist "$HOME/.oh-my-zsh"; then
+    _oh_my_zsh_install
+  else
+    log_info "Identified a local installation of oh-my-zsh"
+  fi 
+}
+
+run_zsh_command() {
+
 }

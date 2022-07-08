@@ -2,20 +2,20 @@
 
 # Description  ENV var specifying dotfiles destination directory
 # ==============================================================
-export DOTFILES_HOME_DIR=${HOME}/.dotfiles
+# export DOTFILES_HOME_DIR=${HOME}/.dotfiles
 
 # Description  ENV var specifying codebase root folder
 # ====================================================
-export CODEBASE=${HOME}/codebase
+# export CODEBASE=${HOME}/codebase
 
 # Description  ENV var dotfiles repository path (+alias)
 # ======================================================
-export DOTFILES_REPO=${CODEBASE}/github/dotfiles
-alias dotfiles=${DOTFILES_REPO}
+# export DOTFILES_REPO=${CODEBASE}/github/dotfiles
+# alias dotfiles=${DOTFILES_REPO}
 
 # Description  ENV var specifying environmental settings e.g. Go, JDK etc..
 # =========================================================================
-export ENVIRONMENT=${HOME}/environment
+# export ENVIRONMENT=${HOME}/environment
 
 reload_dot_files() {
   _reload_managed_files_inner

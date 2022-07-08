@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Title        mac-os.sh
-# Description  Customize macOS default settings and change key bindings
+# Title        macOS settings preferences
+# Description  Customize macOS settings preferences
 # Author       Zachi Nachshon <zachi.nachshon@gmail.com>
 #==============================================================================
-print_banner() {
+mac_os_print_banner() {
   echo -e "
 ███╗   ███╗ █████╗  ██████╗               ██████╗ ███████╗
 ████╗ ████║██╔══██╗██╔════╝              ██╔═══██╗██╔════╝
@@ -79,28 +79,23 @@ activity_monitor() {
   echo -e "Activity monitor settings override... Done."
 }
 
-verify_pre_install() {
-  read -p "Do you want to override macOS defaults and change key bindings? (y/n): " input
-  if [[ ${input} != "y" ]]; then
-    echo -e "\nNothing has changed.\n"
-    exit 0
+run_os_mac_settings_command() {
+  mac_os_print_banner
+
+  if [[ $(prompt_yes_no "Override macOS setting with personal preferences" "warning") == "y" ]]; then
+
+    key_bindings
+    finder
+    keyboard
+    hidden_files_and_folders
+    activity_monitor
+
+    # Kill all Finder to apply some settings
+    Killall Finder
+
+    log_info "macOS settings were applied successfully, RESTART IS REQUIRED."
+
+  else
+    log_info "Nothing was changed."
   fi
 }
-
-main() {
-  print_banner
-  verify_pre_install
-
-  key_bindings
-  finder
-  keyboard
-  hidden_files_and_folders
-  activity_monitor
-
-  # Kill all Finder to apply some settings
-  Killall Finder
-
-  echo -e "\nRestart is required !\n"
-}
-
-main "$@"

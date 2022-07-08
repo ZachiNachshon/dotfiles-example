@@ -1,4 +1,4 @@
-# https://github.com/Homebrew/homebrew-cask-drivers
-# brew tap homebrew/cask-drivers
-# brew install --cask qmk-toolbox
+# ===================================== IMPORTANT =========================================
+# AN EMPTY LINE AT THE END OF THE FILE IS MANDATORY - FOR THE LAST ITEM TO BE READ PROPERLY
+# =========================================================================================
 qmk-toolbox

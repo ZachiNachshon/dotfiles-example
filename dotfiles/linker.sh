@@ -4,6 +4,12 @@
 # Description  Create or remove symlinks for this repository
 # Author       Zachi Nachshon <zachi.nachshon@gmail.com>
 #==============================================================================
+
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/logger.sh"
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/prompter.sh"
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/io.sh"
+source "${DOTFILES_REPO_LOCAL_PATH}/external/shell_scripts_lib/strings.sh"
+
 print_banner() {
   echo -e "
 ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
@@ -213,11 +219,9 @@ select_option() {
   fi
 }
 
-main() {
+run_dotfiles_link_command() {
   # This script assumes it was executed via makefile on repo root
   source ${PWD}/config.sh
   print_banner
   select_option
 }
-
-main "$@"

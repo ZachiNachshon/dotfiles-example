@@ -1,3 +1,6 @@
+# ===================================== IMPORTANT =========================================
+# AN EMPTY LINE AT THE END OF THE FILE IS MANDATORY - FOR THE LAST ITEM TO BE READ PROPERLY
+# =========================================================================================
 zsh
 zsh-syntax-highlighting
 fzf
