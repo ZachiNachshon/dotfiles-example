@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias zachi="cd ~/temp"
+
 # -=-= Custom =-=-
 alias github="cd ${CODEBASE}/github"
 alias dl="cd ~/Downloads"

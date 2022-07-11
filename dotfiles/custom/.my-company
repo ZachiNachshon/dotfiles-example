@@ -3,3 +3,7 @@
 #
 # Place your work related / personal content in here...
 #
+
+zachi_test() {
+  echo "abcd"
+}

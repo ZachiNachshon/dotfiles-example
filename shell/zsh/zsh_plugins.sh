@@ -172,5 +172,5 @@ oh_my_zsh_setup() {
 }
 
 run_zsh_command() {
-
+  oh_my_zsh_setup
 }

@@ -1,11 +1,18 @@
 #!/bin/bash
 
 ###########################################################################
-#                             Load .dotfiles
+#                             .dotfiles RELOAD
 ###########################################################################
-DOTFILES_REPO="$(dirname "$(readlink "${HOME}/.dotfiles/.config")")"
-source ${DOTFILES_REPO}/config.sh
-reload_dot_files
+is_tool_exist() {
+  local name=$1
+  [[ $(command -v "${name}") ]]
+}
+
+if is_tool_exist "dotfiles"; then
+  dotfiles reload
+else
+  echo -e "Dotfiles will not reload, missing CLI utility. name: dotfiles"
+fi
 ###########################################################################
 
 # Set name of the theme to load. Optionally, if you set this to "random"
