@@ -1,6 +1,8 @@
 #!/bin/bash
 
-alias zachi="cd ~/temp"
+export CODEBASE=$HOME/codebase
+
+alias zachi="echo 'hello zachi'"
 
 # -=-= Custom =-=-
 alias github="cd ${CODEBASE}/github"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export CODEBASE=$HOME/codebase
+
 # -=-= Kubernetes =-=-
 export KUBECONFIG=$HOME/.kube/k3s/config
 

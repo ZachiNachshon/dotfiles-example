@@ -8,12 +8,9 @@
 DOTFILES_REPO_LOCAL_PATH="$HOME/.config/dotfiles"
 
 {
-  echo "test"
-  # if ! is_directory_exist "${HOME}/Library/KeyBindings"; then
-  #   mkdir -p "${HOME}/Library/KeyBindings"
-  #   cp mac/assets/DefaultKeyBinding.dict "${HOME}/Library/KeyBindings"
-  #   echo "Key bindings override... Done."
-  # else
-  #   echo "Key bindings override... Already installed."
-  # fi
+  if [[ -d "${HOME}/Library/KeyBindings" ]]; then
+    mkdir -p "${HOME}/Library/KeyBindings"
+  fi
+
+  cp "${DOTFILES_REPO_LOCAL_PATH}/os/mac/assets/DefaultKeyBinding.dict" "${HOME}/Library/KeyBindings"
 }
