@@ -1,12 +1,14 @@
-# Verify gitconfig origin using:
-# 
+# Verify user email:
+#   git config --get user.email
+
+# Verify gitconfig origin:
 #   git config --list --show-origin
-#
+
 [includeIf "gitdir/i:~/.config/"]
-  path = ~/.gitconfig_oss
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
 
 [includeIf "gitdir/i:~/codebase/github/"]
-  path = ~/.gitconfig_oss
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
 
 [includeIf "gitdir/i:~/codebase/work/"]
-  path = ~/.gitconfig_wix
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_wix
