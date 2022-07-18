@@ -1,7 +1,12 @@
-[user]
-  name = dummy
-  email = dummy@dummy.com
-[includeIf "gitdir:~/codebase/github/"]
+# Verify gitconfig origin using:
+# 
+#   git config --list --show-origin
+#
+[includeIf "gitdir/i:~/.config/"]
   path = ~/.gitconfig_oss
-[includeIf "gitdir:~/codebase/work/"]
+
+[includeIf "gitdir/i:~/codebase/github/"]
+  path = ~/.gitconfig_oss
+
+[includeIf "gitdir/i:~/codebase/work/"]
   path = ~/.gitconfig_wix
