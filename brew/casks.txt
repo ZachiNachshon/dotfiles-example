@@ -24,3 +24,4 @@ http-toolkit
 fork
 hyper
 font-hack-nerd-font
+openmtp
