@@ -1,0 +1,17 @@
+# Verify user email:
+#   git config --get user.email
+
+# Verify gitconfig origin:
+#   git config --list --show-origin
+
+[alias]
+  pulls = !bash -c 'git stash && git pull && git stash pop'
+
+[includeIf "gitdir/i:~/.config/"]
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
+
+[includeIf "gitdir/i:~/codebase/personal/"]
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
+
+[includeIf "gitdir/i:~/codebase/work/"]
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_work

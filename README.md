@@ -2,107 +2,184 @@
   <img src="docs/assets/logos/dotfiles-logo-orig.png" width=500 align="middle"/>
 </h3>
 
+<p align="center">
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
+  </a>
+  <a href="https://www.paypal.me/ZachiNachshon">
+    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  </a>
+</p>
 
-## What is it?
+<p align="center">
+  <a href="#requirements">Requirements</a> •
+  <a href="#quickstart">QuickStart</a> •
+  <a href="#overview">Overview</a> •
+  <a href="#support">Support</a> •
+  <a href="#license">License</a>
+</p>
+<br>
 
-A curated list of `.dotfiles` I use for my local development environment. This repository intended to consolidate and manage commonly used `.dotfiles` into a single place backed by a git repository.<br/>
-It creates symlinks from [dotfiles directory](dotfiles) in the following manner:
-
-- `~/.dotfiles/.config` - directories paths of *dotfiles repo* and *.dotfiles symlinks* + reload symlinks function
-- `~/.dotfiles/managed/*.*` - content to symlink across all machines
-- `~/.dotfiles/custom/*.*` - content to symlink in specific machines e.g. work related / personal etc..
-
-Additionally, this repository contains:
-- [Homebrew](https://github.com/Homebrew/brew) installation script for common [packages and casks](brew) that I use
-- macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
+An example of a `dotfiles` repository used for a local development environment. This repository is curated and managed via [dotfiles-cli](https://zachinachshon.com/dotfiles-cli/) utility which simplifies the complex dotfiles repository wiring by separating the files from the management layer, allowing to consolidate and manage dotfiles, settings and perferences in a single place backed by a remote git repository.
 
 <br>
 
-## Getting Started
+<h2 id="requirements">🏁 Requirements</h2>
 
-List of available `make` commands:
-
-1. `dotfiles`   - create/remove dotfiles symlinks to/from this repo
-1. `brew` - (*optional*) install commonly used Homebrew [packages and casks](brew)
-1. `mac`  - (*optional*) macOS custom KeyBindings, Finder customizations, keyboard preferences and other overrides
-1. `all` - (*optional*) execute `mac`, `dotfiles` and `brew` in this order
-1. `help` - (*optional*) get available actions
+- A Unix-like operating system: macOS, Linux
+- `git` (recommended `v2.30.0` or higher)
+- `dotfiles-cli` ([download](https://zachinachshon.com/dotfiles-cli/docs/latest/getting-started/download/))
 
 <br>
 
-## Customization
+<h2 id="overview">🔍 Overview</h2>
 
-<u>**Custom**</u>
+- [Dotfiles Repo Structure](#dotfiles-repo-structure)
+  - [brew](#brew)
+  - [dotfiles](#dotfiles)
+    - [custom](#custom)
+    - [home](#home)
+    - [session](#session)
+    - [shell](#shell)
+    - [transient](#transient)
+  - [os](#os)
+  - [plugins](#plugins)
+- [Documentation](#documentation)
 
-Just add any custom dotfile to `<repo-root>/dotfiles/custom/*.*` and it'll be sourced on every new shell.
+<br>
 
-**<u>Managed</u>**
+<h2 id="dotfiles-repo-structure">Dotfiles Repo Structure</h2>
 
-For a managed content to be added across all machines using this dotfiles repo, add it to the relevant file:
+This is the expected dotfiles repository structure to properly integrate with `dotfiles-cli`:
 
-- `.aliases`
-- `.functions`
-- `.exports`
+```bash
+.
+├── ...
+├── brew                     # Homebrew components, items on each file should be separated by a new line
+│   ├── casks.txt
+│   ├── drivers.txt
+│   ├── packages.txt
+│   ├── services.txt
+│   └── taps.txt
+│
+├── dotfiles               
+│   ├── custom               # Custom files to source on every new shell session (work/personal)
+│   │   ├── .my-company  
+│   │   └── ...
+│   ├── home                 # Files to symlink into HOME folder
+│   │   ├── .gitconfig       
+│   │   ├── .vimrc
+│   │   └── ...
+│   ├── session              # Files to source on new shell sessions
+│   │   ├── .aliases
+│   │   └── ...
+│   ├── shell                # Shell run commands files to symlink into HOME folder
+│   │   ├── .zshrc
+│   │   └── ...
+│   └── transient            # Files to source on new shell session (not symlinked, can be git-ignored)
+│       └── .secrets
+│
+├── os
+│   ├── linux                # Scripts to configure Linux settings and preferences
+│   │   ├── key_bindings.sh
+│   │   └── ...
+│   └── mac                  # Scripts to configure macOS settings and preferences
+│       ├── finder.sh  
+│       └── ...
+│
+├── plugins
+│   ├── zsh                  # Scripts to install ZSH plugins
+│   │   ├── oh_my_zsh.sh  
+│   │   └── ...
+│   └── bash                 # Scripts to install Bash plugins
+│       ├── dummy.sh
+│       └── ...
+└── ...
+```
 
-### Transient Files
+| :bulb: Note |
+| :--------------------------------------- |
+| For detailed information about the dotfiles repo structure, please [read here](https://zachinachshon.com/dotfiles-cli/docs/latest/usage/structure/). |
 
-If files in `<repo-root>/dotfiles/transient` directory exists, they will be sourced along but won't get symlinked anywhere.<br/>
-You can use this to export ENV vars with sensitive information such as secrets to become available on any newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
+<br>
+
+<h3 id="brew">brew</h3>
+
+Declare which Homebrew components to install by type, the brew folder holds the Homebrew components declarations, items on each file should be separated by a new line.
+
+Usage:
+
+```bash
+dotfiles brew <packages/casks/drivers/services/all>
+```
+
+<br>
+
+<h3 id="dotfiles">dotfiles</h3>
+
+Sync or unsync symlinks from the dotfiles repository and control what to source on an active shell session.
+
+Usage:
+
+```bash
+dotfiles sync <home/shell/all>
+```
+
+**home**
+
+The dotfiles folder contains files to symlink from the repository to the $HOME folder, an unsync command is available to remove them when necessary.
+
+**custom**
+
+Those are dotfiles that should be symlinked on specific machines e.g. work related / personal etc..
+
+**session**
+
+Session based content such as `exports`, `aliases`, `functions` and such to get sourced across all machines on every new shell session.
+
+**shell**
+
+Those are shell RC files that get symlinked into the $HOME folder accoridng to the active shell in use (`zsh`/`bash`), those files are being sourced on every new shell session. There is a `dotfiles reload` available to change an active shell session state.
+
+**transient**
+
+If files in the `transient` folder exists, they will be sourced along but won't get symlinked anywhere.<br/>
+You can use this to export ENV VARs with sensitive information such as secrets to become available on any newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
 
 | :warning: Warning |
 | :--------------------------------------- |
 | It is not recommended to commit the `.secrets` transient file as it may contain sensitive information. |
 
-    .
-    ├── ...
-    ├── dotfiles               
-    │   └── custom  # dotfiles to symlink in specific machines e.g. work related / personal etc..
-    │       ├── .my-company  
-    │       └── ...
-    │   └── home  # files that should get symlinked in HOME folder
-    │       ├── .gitignore_global       
-    │       └── ...
-    │   └── managed  # dotfiles to symlink across all machines
-    │       ├── .aliases
-    │       └── ...
-    │   └── shell  # shell run commands to gets sourced on new shell session (+run command to load dotfiles)
-    │       ├── .zshrc
-    │       └── ...
-    │   └── transient # content that gets sourced on new shell session but not symlinked
-    │       └── .secrets       
-    │   └── .dotfiles.sh  # dotfiles install/uninstall management script 
-    └── ...
+<br>
+
+<h3 id="os">os</h3>
+
+Update OS settings and preferences, the os folder contains scripts that configure the presonal settings and preferences for mac / linux operating systems.
+
+Usage:
+
+```bash
+dotfiles os <linux/mac>
+```
 
 <br>
 
-## Quick Start Guide
+<h3 id="plugins">plugins</h3>
 
-####  `make dotfiles` (install dotfiles)
+Install plugins by shell type, the plugins folder contains scripts to run on a specific shell type.
 
-<details><summary>Show</summary>
-<img src="docs/assets/gifs/dotfiles-install.gif" alt="dotfiles-install" />
-</details>
+Usage:
+
+```bash
+dotfiles plugins <bash/zsh>
+```
+
 <br>
 
-#### `make dotfiles` (uninstall dotfiles)
+<h3 id="documentation">📖 Documentation</h3>
 
-<details><summary>Show</summary>
-<img src="docs/assets/gifs/dotfiles-uninstall.gif" alt="dotfiles-uninstall" />
-</details>
-<br>
+Please refer to the [documentation](https://zachinachshon.com/dotfiles-cli/docs/latest/getting-started/introduction/) for detailed explanation on how to configure and use `dotfiles-cli`.
 
-#### `make brew` (install Homebrew packages/casks)
-
-<details><summary>Show</summary>
-<img src="docs/assets/gifs/brew.gif" alt="brew" />
-</details>
-<br>
-
-#### `make mac` (override macOS with custom setting)
-
-<details><summary>Show</summary>
-<img src="docs/assets/gifs/mac-install.gif" alt="mac" />
-</details>
 <br>
 
 <sup><b>Credits: </b><a href=https://github.com/jglovier/dotfiles-logo>Logo</a> created by <a href=https://github.com/jglovier>Joel Glovier</a></sup>

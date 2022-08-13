@@ -1,3 +1,6 @@
+# ===================================== IMPORTANT =========================================
+# AN EMPTY LINE AT THE END OF THE FILE IS MANDATORY - FOR THE LAST ITEM TO BE READ PROPERLY
+# =========================================================================================
 zsh
 zsh-syntax-highlighting
 fzf
@@ -10,7 +13,6 @@ kubernetes-cli
 kubernetes-helm
 python3
 derailed/k9s/k9s
-graphviz
 shellcheck
 jq
 nmap

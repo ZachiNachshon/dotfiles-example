@@ -1,6 +1,6 @@
-# brew tap dimentium/autoraise
-# brew install autoraise
-# brew services start autoraise
+# ===================================== IMPORTANT =========================================
+# AN EMPTY LINE AT THE END OF THE FILE IS MANDATORY - FOR THE LAST ITEM TO BE READ PROPERLY
+# =========================================================================================
 # https://github.com/Dimentium/homebrew-autoraise
 # https://github.com/sbmpost/AutoRaise
 autoraise

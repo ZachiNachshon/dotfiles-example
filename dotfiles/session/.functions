@@ -1,0 +1,73 @@
+#!/bin/bash
+
+#######################################
+# Create a new directory and cd into it
+# Globals:
+#   None
+# Arguments:
+#   None
+# Usage:
+#   mkd <dirname>
+#######################################
+mkd() {
+  mkdir -p "$@"
+  cd "$@" || exit
+}
+
+#######################################
+# Determine size of a file or total size of a directory
+# Globals:
+#   None
+# Arguments:
+#   None
+# Usage:
+#   fs <dirname>
+#   fs <filename>
+#######################################
+fs() {
+  if du -b /dev/null >/dev/null 2>&1; then
+    local arg=-sbh
+  else
+    local arg=-sh
+  fi
+  # shellcheck disable=SC2199
+  if [[ -n "$@" ]]; then
+    du ${arg} -- "$@"
+  else
+    du ${arg} -- .[^.]* *
+  fi
+}
+
+#######################################
+# Run a script in the background
+# Globals:
+#   None
+# Arguments:
+#   None
+# Usage:
+#   bkr ./some_script.sh
+#######################################
+bkr() {
+  (nohup "$@" &>/dev/null &)
+}
+
+#######################################
+# Kill any running IntelliJ IDEA process
+# Globals:
+#   None
+# Arguments:
+#   None
+# Usage:
+#   kill_intellij
+#######################################
+kill_intellij() {
+  local pid=$(ps -ef | grep -v grep | grep idea | awk '{print $2}')
+
+  if [[ -n ${pid} ]]; then
+    echo "Killing idea process. pid: ${pid}"
+    kill -9 "${pid}"
+    echo "Killed."
+  else
+    echo "IntelliJ IDEA is not running."
+  fi
+}

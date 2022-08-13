@@ -1,0 +1,10 @@
+[user]
+  name = Username
+  email = username@work.com
+[core]
+  autocrlf = input
+  excludesfile = ~/.gitignore_global
+[pull]
+  rebase = true
+[merge]
+  ff = only
