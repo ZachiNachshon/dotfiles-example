@@ -5,7 +5,7 @@
 #   git config --list --show-origin
 
 [alias]
-  pulls = !bash -c 'git stash && git pull && git stash pop' 
+  pulls = !bash -c 'git stash && git pull && git stash pop'
   # pulls = !bash -c 'echo $SHELL'
 
 [includeIf "gitdir/i:~/.config/"]
