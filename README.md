@@ -127,10 +127,10 @@ dotfiles sync <home/shell/all>
 
 | Domain         | Description 
 | :------------------- |:---
-| `home` | The dotfiles folder contains files to symlink from the repository to the $HOME folder, an unsync command is available to remove them when necessary.
+| `home` | The dotfiles folder contains files to symlink from the repository to the `$HOME` folder, an unsync command is available to remove them when necessary.
 | `custom`    | Session based content such as  to get sourced on specific machines e.g. work related / personal
 | `session`   | Session based content such as `exports`, `aliases`, `functions` to get sourced across all machines on every new shell session.
-| `shell`   | Those are shell RC files that get symlinked into the $HOME folder accoridng to the active shell in use (`zsh`/`bash`), those files are being sourced on every new shell session. There is a `dotfiles reload` command available to apply on an active shell session.
+| `shell`   | Those are shell RC files that get symlinked into the `$HOME` folder accoridng to the active shell in use (`zsh`/`bash`), usually files that are being sourced on every new shell session.
 | `transient`   | If files in the `transient` folder exists, they will be sourced along but won't get symlinked anywhere. You can use this to export ENV VARs with sensitive information such as secrets to become available on any newly opened shells. Files under `transient` folder are git ignored by default to prevent from committing to a public repository.
 
 | :warning: Warning |
