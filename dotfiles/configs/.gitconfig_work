@@ -1,6 +1,6 @@
 [user]
   name = Username
-  email = username@gmail.com
+  email = username@work.com
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore_global

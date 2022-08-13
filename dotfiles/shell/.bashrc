@@ -12,14 +12,14 @@
 # The dotfiles reload command creates a new shell session which in turn 
 # run the RC file (this file). 
 # The following script will source a reload_session.sh script under 
-#  current shell session without creating a nested shell session. 
+# current shell session without creating a nested shell session. 
 ############################################################################# 
-DOTFILES_CLI_RELOAD_SESSION_SCRIPT_PATH=${HOME}/.config/dotfiles-cli/reload_session.sh 
-export PATH=${HOME}/.local/bin:${PATH} 
+DOTFILES_CLI_INSTALL_PATH=${DOTFILES_CLI_INSTALL_PATH:-${HOME}/.config/dotfiles-cli} 
+DOTFILES_CLI_RELOAD_SESSION_SCRIPT_PATH=${DOTFILES_CLI_INSTALL_PATH}/reload_session.sh 
  
 if [[ -e ${DOTFILES_CLI_RELOAD_SESSION_SCRIPT_PATH} ]]; then 
   export LOGGER_SILENT=True 
   source ${DOTFILES_CLI_RELOAD_SESSION_SCRIPT_PATH} 
 else 
-  echo -e 'Dotfiles CLI is not installed, cannot load plugins/reload session. path: $HOME/.config/dotfiles-cli' 
+  echo -e 'Dotfiles CLI is not installed, cannot load plugins/reload session. path: $DOTFILES_CLI_INSTALL_PATH' 
 fi

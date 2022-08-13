@@ -2,18 +2,11 @@
 
 export CODEBASE=$HOME/codebase
 
-alias zachi="echo 'hello zachi'"
-
 # -=-= Custom =-=-
-alias github="cd ${CODEBASE}/github"
+alias personal="cd ${CODEBASE}/personal"
+alias work="cd ${CODEBASE}/work"
 alias dl="cd ~/Downloads"
-alias gop="cd ${GOPATH}/src/github.com"
 alias dc="docker-compose"
-
-# -=-= Applications =-=-
-alias typora="open -a typora"
-# Exist only for Java 1.8 - need to use a full path
-alias visualvm="${JAVA_8_HOME}/bin/jvisualvm &"
 
 # -=-= ZSH =-=-
 alias zshconfig="vim ~/.zshrc"

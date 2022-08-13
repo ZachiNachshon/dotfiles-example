@@ -6,13 +6,12 @@
 
 [alias]
   pulls = !bash -c 'git stash && git pull && git stash pop'
-  # pulls = !bash -c 'echo $SHELL'
 
 [includeIf "gitdir/i:~/.config/"]
   path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
 
-[includeIf "gitdir/i:~/codebase/github/"]
+[includeIf "gitdir/i:~/codebase/personal/"]
   path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_oss
 
 [includeIf "gitdir/i:~/codebase/work/"]
-  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_wix
+  path = ~/.config/dotfiles/dotfiles/configs/.gitconfig_work

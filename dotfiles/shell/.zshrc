@@ -111,9 +111,6 @@ source ${ZSH}/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Used for anchor auto completion - load /usr/local/share/zsh/site-functions/_anchor
-# autoload -U compinit && compinit
-
 # Load fuzzy finder settings (https://github.com/junegunn/fzf)
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 

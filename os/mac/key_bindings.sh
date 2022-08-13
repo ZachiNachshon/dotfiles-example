@@ -5,7 +5,8 @@
 # Author       Zachi Nachshon <zachi.nachshon@gmail.com>
 #==============================================================================
 
-DOTFILES_REPO_LOCAL_PATH="$HOME/.config/dotfiles"
+CONFIG_FOLDER_PATH="${HOME}/.config"
+DOTFILES_REPO_LOCAL_PATH=${DOTFILES_REPO_LOCAL_PATH:-"${CONFIG_FOLDER_PATH}/dotfiles"}
 
 {
   if [[ -d "${HOME}/Library/KeyBindings" ]]; then
