@@ -13,7 +13,6 @@
 
 <p align="center">
   <a href="#requirements">Requirements</a> •
-  <a href="#quickstart">QuickStart</a> •
   <a href="#overview">Overview</a> •
   <a href="#support">Support</a> •
   <a href="#license">License</a>
@@ -163,9 +162,23 @@ dotfiles plugins <bash/zsh>
 
 <br>
 
-<h3 id="documentation">📖 Documentation</h3>
+<h2 id="documentation">📖 Documentation</h2>
 
 Please refer to the [documentation](https://zachinachshon.com/dotfiles-cli/docs/latest/getting-started/introduction/) for detailed explanation on how to configure and use `dotfiles-cli`.
+
+<br>
+
+<h2 id="support">❤️ Support</h2>
+
+`dotfiles-example` is an open source project that is currently self maintained in addition to my day job, you are welcome to show your appreciation by sending me cups of coffee using the the following link as it is a known fact that it is the fuel that drives software engineering ☕
+
+<a href="https://github.com/sponsors/ZachiNachshon" target="_blank"><img src="docs/assets/logos/bmc-orig.svg" height="57" width="200" alt="Buy Me A Coffee"></a>
+
+<br>
+
+<h2 id="license">License</h2>
+
+MIT
 
 <br>
 
