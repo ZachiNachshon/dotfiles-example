@@ -11,7 +11,12 @@ wget
 telnet
 kubernetes-cli
 kubernetes-helm
-python3
+python@3.9
+python@3.8
+openjdk@11
+openjdk@17
+go@1.18
+go@1.19
 derailed/k9s/k9s
 shellcheck
 jq

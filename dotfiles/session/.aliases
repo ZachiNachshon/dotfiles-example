@@ -12,15 +12,16 @@ alias dc="docker-compose"
 alias zshconfig="vim ~/.zshrc"
 
 # -=-= Java =-=-
-alias java8='export JAVA_HOME=${JAVA_8_HOME}'
-alias java9='export JAVA_HOME=${JAVA_9_HOME}'
-alias java10='export JAVA_HOME=${JAVA_10_HOME}'
 alias java11='export JAVA_HOME=${JAVA_11_HOME}'
-alias java12='export JAVA_HOME=${JAVA_12_HOME}'
+alias java17='export JAVA_HOME=${JAVA_17_HOME}'
+
+alias python_3.8="brew unlink python@3.9 && brew link python@3.8"
+alias python_3.9="brew unlink python@3.8 && brew link python@3.9"
 
 # -=-= GO =-=-
-alias go1.13='export GOROOT=${GOROOT_1_13}'
-alias go1.14.3='export GOROOT=${GOROOT_1_14_3}'
+alias go1.18="brew unlink go@1.19 && brew link go@1.18"
+alias go1.19="brew unlink go@1.18 && brew link go@1.19"
+alias gop="cd ${GOPATH}/src/github.com"
 
 # -=-= IntelliJ =-=-
 INTELLIJ_VERSION_FOLDER=IntelliJIdea2021.1
